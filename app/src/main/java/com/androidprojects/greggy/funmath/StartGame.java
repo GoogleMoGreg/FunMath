@@ -1,0 +1,50 @@
+package com.androidprojects.greggy.funmath;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+public class StartGame extends AppCompatActivity implements View.OnClickListener {
+
+    String DEBUG_MESSAGE = "MESSAGE";
+
+    Button btn_add,btn_sub,btn_mul;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start_game);
+
+        btn_add = (Button) findViewById(R.id.btn_addition);
+        btn_add.setOnClickListener(this);
+        btn_sub = (Button) findViewById(R.id.btn_subtraction);
+        btn_sub.setOnClickListener(this);
+        btn_mul = (Button) findViewById(R.id.btn_multiplication);
+        btn_mul.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+
+            case R.id.btn_addition:
+                Log.d(DEBUG_MESSAGE,"Clicked "+btn_add.getText());
+                Intent Addition = new Intent(getApplicationContext(), com.androidprojects.greggy.funmath.Addition.class);
+                startActivity(Addition);
+                this.finish();
+                break;
+            case R.id.btn_subtraction:
+                Log.d(DEBUG_MESSAGE,"Clicked "+btn_sub.getText());
+                break;
+            case R.id.btn_multiplication:
+                Log.d(DEBUG_MESSAGE,"Clicked "+btn_mul.getText());
+                break;
+        }
+
+    }
+}

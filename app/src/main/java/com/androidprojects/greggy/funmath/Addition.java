@@ -1,10 +1,7 @@
 package com.androidprojects.greggy.funmath;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -92,7 +89,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         Random rndquestion = new Random();
         Question = rndquestion.nextInt(3);
 
-        InitQuestions(numPos_1,colorPos_1,bgColorPos_1,Question);
+        InitQuestions(Question);
 
         Thread gameRunThread = new Thread(GameRunThread);
         gameRunThread.start();
@@ -102,18 +99,22 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
 
         int question = Question;
+        int numAnswer = numPos_1,
+            colorAnswer = colorPos_1,
+            bgColorAnswer = bgColorPos_1;
+
         switch (v.getId()){
             case R.id.btn_FirstNum:
                 Log.d(DEBUG_MESSAGE, "onClick: First");
-                GetFirstBtnValue(question);
+                GetFirstBtnValue(question,numAnswer,colorAnswer,bgColorAnswer);
                 break;
             case R.id.btn_SecondNum:
                 Log.d(DEBUG_MESSAGE, "onClick: Second");
-                GetSecondBtnValue(question);
+                GetSecondBtnValue(question,numAnswer,colorAnswer,bgColorAnswer);
                 break;
             case R.id.btn_ThirdNum:
                 Log.d(DEBUG_MESSAGE, "onClick: Third");
-                GetThirdBtnValue(question);
+                GetThirdBtnValue(question,numAnswer,colorAnswer,bgColorAnswer);
                 break;
         }
     }
@@ -138,8 +139,8 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         }while (timer!=0);
     }
 
-    private void InitQuestions(int numPos_1,int colorPos_1,int bgColorPos_1,int Question){
-        List<Integer> arrayAnswers= Arrays.asList(new Integer[]{numPos_1,colorPos_1,bgColorPos_1});
+    private void InitQuestions(int Question){
+
         switch (Question){
             case 0:
                 tv_question.setText("Pick the Correct ");
@@ -160,61 +161,82 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         Log.d(DEBUG_MESSAGE,"Question Index is "+Question);
     }
 
-    private void GetFirstBtnValue(int Question){
+    private void GetFirstBtnValue(int Question,int numAnswer,int colorAnswer,int bgColorAnswer){
+
         switch (Question){
             case 0:
                 AnsNum = btn_firstNum.getText().toString();
                 Log.d(DEBUG_MESSAGE,"Answer is: "+AnsNum);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
                 break;
             case 1:
                 ColorAns = btn_firstNum.getCurrentTextColor();
                 Log.d(DEBUG_MESSAGE,"Text Color is: "+ColorAns);
+                GetAnswer(ColorAns,colorAnswer);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_firstNum.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(DEBUG_MESSAGE,"BG Color is: "+BGColorAns);
+                GetAnswer(BGColorAns,bgColorAnswer);
                 break;
         }
 
     }
 
-    private void GetSecondBtnValue(int Question){
+    private void GetSecondBtnValue(int Question,int numAnswer,int colorAnswer,int bgColorAnswer){
         switch (Question){
             case 0:
                 AnsNum = btn_secondNum.getText().toString();
                 Log.d(DEBUG_MESSAGE,"Answer is: "+AnsNum);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
                 break;
             case 1:
                 ColorAns = btn_secondNum.getCurrentTextColor();
                 Log.d(DEBUG_MESSAGE,"Text Color is: "+ColorAns);
+                GetAnswer(ColorAns,colorAnswer);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_secondNum.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(DEBUG_MESSAGE,"BG Color is: "+BGColorAns);
+                GetAnswer(BGColorAns,bgColorAnswer);
                 break;
         }
 
     }
 
-    private void GetThirdBtnValue(int Question){
+    private void GetThirdBtnValue(int Question,int numAnswer,int colorAnswer,int bgColorAnswer){
         switch (Question){
             case 0:
                 AnsNum = btn_thirdNum.getText().toString();
                 Log.d(DEBUG_MESSAGE,"Answer is: "+AnsNum);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
                 break;
             case 1:
                 ColorAns = btn_thirdNum.getCurrentTextColor();
                 Log.d(DEBUG_MESSAGE,"Text Color is: "+ColorAns);
+                GetAnswer(ColorAns,colorAnswer);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_thirdNum.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(DEBUG_MESSAGE,"BG Color is: "+BGColorAns);
+                GetAnswer(BGColorAns,bgColorAnswer);
                 break;
         }
 
+    }
+
+    private void GetAnswer(int ansValue,int ans){
+        Log.d(DEBUG_MESSAGE,"Your Choosen Answer: "+ansValue);
+        Log.d(DEBUG_MESSAGE, "Correct Answer: "+ans);
+        if (ans == ansValue){
+            Log.d(DEBUG_MESSAGE,"Correct!");
+        }
+        else {
+            Log.d(DEBUG_MESSAGE,"Wrong!");
+        }
     }
 
     private void ShufflePositionNumber(int numPos_1,int numPos_2,int numPos_3){

@@ -34,11 +34,30 @@
         />
     <TextView
         android:id="@+id/tv_addQuestion"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick the right answer :"
+        android:text="Pick the right answer "
         android:textSize="20sp"
         android:layout_below="@+id/tv_addNumQuestion"
+        />
+    <TextView
+        android:id="@+id/tv_addQuestion_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="blah"
+        android:textSize="20sp"
+        android:layout_below="@+id/tv_addNumQuestion"
+        android:layout_toRightOf="@id/tv_addQuestion"
+        />
+
+    <TextView
+        android:id="@+id/tv_addQuestion_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" blah"
+        android:textSize="20sp"
+        android:layout_below="@+id/tv_addNumQuestion"
+        android:layout_toRightOf="@id/tv_addQuestion_1"
         />
     <Button
         android:id="@+id/btn_FirstNum"

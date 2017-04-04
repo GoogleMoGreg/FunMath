@@ -1,7 +1,10 @@
 package com.androidprojects.greggy.funmath;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,13 +24,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
 
     String DEBUG_MESSAGE = "MESSAGE";
 
-    int score = 0,
-        x = 2,
-        y = x,
-        numAns,
-        numPos_1,
-        numPos_2,
-        numPos_3;
+    int  numAns, numPos_1, numPos_2, numPos_3;
 
         int textRed = Color.rgb(255,0,0),
             textGreen = Color.rgb(0,255,0),
@@ -44,6 +41,12 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     String AnsNum;
     int ColorAns,BGColorAns;
 
+    public static final String PREFS_NAME = "User_Score";
+    String TAG_KEY = "score",
+           TAG_NUMBER = "number";
+
+    final int TimerValue = 3000;
+    CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,19 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         btn_thirdNum =(Button) findViewById(R.id.btn_ThirdNum);
         btn_thirdNum.setOnClickListener(this);
 
+        SharedPreferences getScore = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        int score = getScore.getInt(TAG_KEY,0);
+        Log.d(DEBUG_MESSAGE,"score is: "+score);
+        tv_score.setText(String.valueOf(score));
+
+        int x,y;
+        x  = GenerateNewNum(score);
+        y=x;
+        Log.d(DEBUG_MESSAGE,"Value of x is :"+x+" Value of y is:"+y);
+        tv_questionNum.setText(String.valueOf(x)+" + "+ String.valueOf(y)+"= ?");
         numAns = x+y;
+
+        Log.d(DEBUG_MESSAGE,"value of numAns is :"+numAns);
         RandomNumber rndNumber = GenerateRndNum(numAns);
         numPos_1 = numAns;
         numPos_2 = rndNumber.getNumDecoy_1();
@@ -88,11 +103,28 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
 
         Random rndquestion = new Random();
         Question = rndquestion.nextInt(3);
-
         InitQuestions(Question);
 
-        Thread gameRunThread = new Thread(GameRunThread);
-        gameRunThread.start();
+        timer = new CountDownTimer(TimerValue,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(DEBUG_MESSAGE,"TIMER IS:"+millisUntilFinished/1000);
+            }
+            @Override
+            public void onFinish() {
+                Log.d(DEBUG_MESSAGE,"TIMES UP!");
+                SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+                SharedPreferences.Editor edit =pref_score.edit();
+                edit.putInt(TAG_KEY,0);
+                edit.apply();
+                cancel();
+                Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+                finish();
+                startActivity(gameOver);
+
+            }
+        }.start();
+
     }
 
     @Override
@@ -117,26 +149,6 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 GetThirdBtnValue(question,numAnswer,colorAnswer,bgColorAnswer);
                 break;
         }
-    }
-
-    Runnable GameRunThread = new Runnable() {
-        @Override
-        public void run() {
-
-            //GameStart();
-            }
-    };
-
-    private void GameStart(){
-        int timer = 10000;
-        Log.d(DEBUG_MESSAGE,"Starting game...");
-        do {
-            Log.d(DEBUG_MESSAGE,"TIMER:"+timer);
-            if (timer==0){
-                Log.d(DEBUG_MESSAGE,"TIMES UP:"+timer);
-            }
-            timer--;
-        }while (timer!=0);
     }
 
     private void InitQuestions(int Question){
@@ -233,9 +245,32 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         Log.d(DEBUG_MESSAGE, "Correct Answer: "+ans);
         if (ans == ansValue){
             Log.d(DEBUG_MESSAGE,"Correct!");
+            SharedPreferences pref_getScore = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            int newScore = pref_getScore.getInt(TAG_KEY,0);
+            newScore++;
+
+            SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor edit =pref_score.edit();
+            edit.putInt(TAG_KEY,newScore);
+            edit.apply();
+
+            StoreNewNum(numAns);
+            Intent restartActivity = getIntent();
+            finish();
+            startActivity(restartActivity);
+            timer.cancel();
         }
         else {
             Log.d(DEBUG_MESSAGE,"Wrong!");
+            SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor edit =pref_score.edit();
+            edit.putInt(TAG_KEY,0);
+            edit.apply();
+            Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+            finish();
+            startActivity(gameOver);
+            timer.cancel();
+
         }
     }
 
@@ -307,6 +342,27 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
 
         }
 
+    }
+
+    int x;
+    private int GenerateNewNum(int score){
+
+        Log.d(DEBUG_MESSAGE,"score is :"+score);
+        if (score<1){
+            x=2;
+        }
+        else {
+            SharedPreferences getStoreNumAns = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            x = getStoreNumAns.getInt(TAG_NUMBER,0);
+        }
+        return x;
+    }
+
+    private void StoreNewNum(int numAns){
+        SharedPreferences storeNumAns = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        SharedPreferences.Editor editor = storeNumAns.edit();
+        editor.putInt(TAG_NUMBER,numAns);
+        editor.apply();
     }
 
     private class RandomNumber{

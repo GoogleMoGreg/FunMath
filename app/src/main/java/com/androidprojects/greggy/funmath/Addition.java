@@ -24,6 +24,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
 
     String DEBUG_MESSAGE = "MESSAGE";
 
+    int score;
     int  numAns, numPos_1, numPos_2, numPos_3;
 
         int textRed = Color.rgb(255,0,0),
@@ -48,6 +49,8 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     final int TimerValue = 3000;
     CountDownTimer timer;
 
+    private DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,12 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         tv_question1 = (TextView) findViewById(R.id.tv_addQuestion_1);
         tv_question2 = (TextView) findViewById(R.id.tv_addQuestion_2);
 
+        dbHelper = new DBHelper(this);
+        String data = dbHelper.getTableValues();
+        Log.d(DEBUG_MESSAGE,data);
+        int numRows = dbHelper.CheckRowNum();
+        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
+
         btn_firstNum =(Button) findViewById(R.id.btn_FirstNum);
         btn_firstNum.setOnClickListener(this);
 
@@ -70,13 +79,13 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         btn_thirdNum.setOnClickListener(this);
 
         SharedPreferences getScore = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
-        int score = getScore.getInt(TAG_KEY,0);
+        score = getScore.getInt(TAG_KEY,0);
         Log.d(DEBUG_MESSAGE,"score is: "+score);
         tv_score.setText(String.valueOf(score));
 
         int x,y;
         x  = GenerateNewNum(score);
-        y=x;
+        y=GenerateSecondNum(x);
         Log.d(DEBUG_MESSAGE,"Value of x is :"+x+" Value of y is:"+y);
         tv_questionNum.setText(String.valueOf(x)+" + "+ String.valueOf(y)+"= ?");
         numAns = x+y;
@@ -119,6 +128,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 edit.apply();
                 cancel();
                 Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+                StoreHighScore(score);
                 finish();
                 startActivity(gameOver);
 
@@ -262,12 +272,14 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         }
         else {
             Log.d(DEBUG_MESSAGE,"Wrong!");
+
             SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
             SharedPreferences.Editor edit =pref_score.edit();
             edit.putInt(TAG_KEY,0);
             edit.apply();
             Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
             finish();
+            StoreHighScore(score);
             startActivity(gameOver);
             timer.cancel();
 
@@ -354,8 +366,19 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         else {
             SharedPreferences getStoreNumAns = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
             x = getStoreNumAns.getInt(TAG_NUMBER,0);
+            if (x>=100){
+                x=10;
+            }
         }
         return x;
+    }
+
+    private int GenerateSecondNum(int x){
+        int xnum;
+        Random rnd = new Random();
+        xnum = rnd.nextInt(x/2)+1;
+        Math.round(xnum);
+        return xnum;
     }
 
     private void StoreNewNum(int numAns){
@@ -363,6 +386,11 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         SharedPreferences.Editor editor = storeNumAns.edit();
         editor.putInt(TAG_NUMBER,numAns);
         editor.apply();
+    }
+
+    private void StoreHighScore(int score){
+        Log.d(DEBUG_MESSAGE,"checking highscore: "+score);
+        dbHelper.UpdateDBScore(1,score);
     }
 
     private class RandomNumber{

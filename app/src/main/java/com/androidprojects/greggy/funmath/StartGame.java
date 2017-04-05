@@ -13,11 +13,14 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
 
     Button btn_add,btn_sub,btn_mul;
 
+    DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
-
+        dbHelper = new DBHelper(this);
+        GenerateDB();
         btn_add = (Button) findViewById(R.id.btn_addition);
         btn_add.setOnClickListener(this);
         btn_sub = (Button) findViewById(R.id.btn_subtraction);
@@ -46,5 +49,18 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
                 break;
         }
 
+    }
+
+    private void GenerateDB(){
+        int numRows = dbHelper.CheckRowNum();
+        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
+        String[] categoryList ={"Addition","Subtraction","Multiplication"};
+        if (numRows<1){
+            for (int i = 0;i<categoryList.length;i++){
+                dbHelper.InsertData(categoryList[i],String.valueOf(0));
+            }
+            Log.d(DEBUG_MESSAGE,"Successfully Inserted new DB");
+
+        }
     }
 }

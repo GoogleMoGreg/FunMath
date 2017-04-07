@@ -37,12 +37,15 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
 
             case R.id.btn_addition:
                 Log.d(DEBUG_MESSAGE,"Clicked "+btn_add.getText());
-                Intent Addition = new Intent(getApplicationContext(), com.androidprojects.greggy.funmath.Addition.class);
-                startActivity(Addition);
+                Intent Addition = new Intent(this, com.androidprojects.greggy.funmath.Addition.class);
                 this.finish();
+                startActivity(Addition);
                 break;
             case R.id.btn_subtraction:
                 Log.d(DEBUG_MESSAGE,"Clicked "+btn_sub.getText());
+                Intent Subtraction = new Intent(this, com.androidprojects.greggy.funmath.Subtraction.class);
+                this.finish();
+                startActivity(Subtraction);
                 break;
             case R.id.btn_multiplication:
                 Log.d(DEBUG_MESSAGE,"Clicked "+btn_mul.getText());

@@ -51,6 +51,10 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
 
     private DBHelper dbHelper;
 
+    String TAG_BUNDLE_SCORE= "score";
+    String TAG_BUNDLE_PK ="pk";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,9 +127,11 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 edit.putInt(TAG_KEY,0);
                 edit.apply();
                 cancel();
-                Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
-                StoreHighScore(score);
+                Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
                 finish();
+                StoreHighScore(score);
+                gameOver.putExtra(TAG_BUNDLE_SCORE,score);
+                gameOver.putExtra(TAG_BUNDLE_PK,1);
                 startActivity(gameOver);
 
             }
@@ -273,11 +279,14 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
             SharedPreferences.Editor edit =pref_score.edit();
             edit.putInt(TAG_KEY,0);
             edit.apply();
-            Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+            timer.cancel();
+            Intent gameOver = new Intent(this,GameOver.class);
             finish();
             StoreHighScore(score);
+            gameOver.putExtra(TAG_BUNDLE_SCORE,score);
+            gameOver.putExtra(TAG_BUNDLE_PK,1);
             startActivity(gameOver);
-            timer.cancel();
+
 
         }
     }
@@ -495,5 +504,19 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         return new RandomColor(txtColor,txtColorDecoy_1,txtColorDecoy_2,bgColor,
                 bgColorDecoy_1,bgColorDecoy_2);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        timer.cancel();
+        SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        SharedPreferences.Editor edit =pref_score.edit();
+        edit.putInt(TAG_KEY,0);
+        edit.apply();
+        Intent startGame = new Intent(this,StartGame.class);
+        finish();
+        startActivity(startGame);
+    }
+
 
 }

@@ -50,6 +50,9 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
 
     DBHelper dbHelper;
 
+    String TAG_BUNDLE_SCORE= "score";
+    String TAG_BUNDLE_PK ="pk";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,9 +118,11 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
                 edit.putInt(TAG_KEY,0);
                 edit.apply();
                 cancel();
-                Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
-                StoreHighScore(score);
+                Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
                 finish();
+                StoreHighScore(score);
+                gameOver.putExtra(TAG_BUNDLE_SCORE,score);
+                gameOver.putExtra(TAG_BUNDLE_PK,2);
                 startActivity(gameOver);
             }
         }.start();
@@ -371,11 +376,13 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             edit.putInt(TAG_KEY,0);
             edit.apply();
 
-            Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+            timer.cancel();
+            Intent gameOver = new Intent(this,GameOver.class);
             finish();
             StoreHighScore(score);
+            gameOver.putExtra(TAG_BUNDLE_SCORE,score);
+            gameOver.putExtra(TAG_BUNDLE_PK,2);
             startActivity(gameOver);
-            timer.cancel();
         }
     }
 
@@ -406,5 +413,18 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
     private void StoreHighScore(int score){
         Log.d(TAG_MESSAGE,"checking highscore: "+score);
         dbHelper.UpdateDBScore(2,score);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        timer.cancel();
+        SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        SharedPreferences.Editor edit =pref_score.edit();
+        edit.putInt(TAG_KEY,0);
+        edit.apply();
+        Intent startGame = new Intent(this,StartGame.class);
+        finish();
+        startActivity(startGame);
     }
 }

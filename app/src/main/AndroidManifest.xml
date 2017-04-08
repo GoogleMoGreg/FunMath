@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".StartGame" />
         <activity android:name=".Addition" />
-        <activity android:name=".Subtraction"></activity>
+        <activity android:name=".Subtraction" />
+        <activity android:name=".GameOver"></activity>
     </application>
 
 </manifest>

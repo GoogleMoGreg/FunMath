@@ -33,7 +33,6 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Highscores "+
         "(pk INTEGER PRIMARY KEY, Category TEXT, Highscore TEXT)");
-
     }
 
     @Override
@@ -50,7 +49,6 @@ public class DBHelper extends SQLiteOpenHelper{
         db.insert(HIGHSCORE_TABLE,null,cv);
         Log.d(TAG, "Successfully Created a DB...");
     }
-
 
     public int CheckRowNum(){
         SQLiteDatabase db = getReadableDatabase();
@@ -79,7 +77,6 @@ public class DBHelper extends SQLiteOpenHelper{
         }
         getdbscore.close();
     }
-
 
     public int ZeroParser(String scoreval){
         int dbScore;
@@ -110,6 +107,18 @@ public class DBHelper extends SQLiteOpenHelper{
         }
         allRows.close();
         return tableString;
+    }
+
+    public int ViewHighScore(int pk){
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor getdbscore = db.rawQuery( "SELECT Highscore FROM "+HIGHSCORE_TABLE+" WHERE pk="+pk+" ",null);
+        if (getdbscore.moveToFirst()){
+            valscore = getdbscore.getString(getdbscore.getColumnIndex(HIGHSCORE_COL_HIGHSCORE));
+        }
+        int DBscore = ZeroParser(valscore);
+
+        return DBscore;
     }
 
 }

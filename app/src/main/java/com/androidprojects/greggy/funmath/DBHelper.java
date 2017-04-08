@@ -80,6 +80,7 @@ public class DBHelper extends SQLiteOpenHelper{
         getdbscore.close();
     }
 
+
     public int ZeroParser(String scoreval){
         int dbScore;
         Log.d(TAG_LOG,"Score is "+valscore);

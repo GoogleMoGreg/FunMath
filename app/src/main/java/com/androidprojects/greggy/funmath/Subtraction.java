@@ -1,8 +1,10 @@
 package com.androidprojects.greggy.funmath;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,10 +40,21 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
     String AnsNum;
     int ColorAns,BGColorAns;
 
+    public static final String PREFS_NAME = "User_Sub_Score";
+    String TAG_KEY = "sub_score",
+            TAG_NUMBER = "sub_number";
+    int score;
+
+    final int TimerValue = 3000;
+    CountDownTimer timer;
+
+    DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subtraction);
+        dbHelper = new DBHelper(this);
 
         tv_score = (TextView)findViewById(R.id.tv_subscore);
         tv_questionNum = (TextView)findViewById(R.id.tv_subquestionNum);
@@ -56,9 +69,16 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         btn_sub3 = (Button)findViewById(R.id.btn_sub_3);
         btn_sub3.setOnClickListener(this);
 
-        int x = 4,
+        SharedPreferences getScore = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        score = getScore.getInt(TAG_KEY,0);
+        Log.d(TAG_MESSAGE,"score is: "+score);
+        tv_score.setText(String.valueOf(score));
+
+        int x = GenerateNewNum(score),
             y = GenerateSecondNum(x);
         numAns = x-y;
+
+        tv_questionNum.setText(x+" - "+y+" = ?");
         int numPosArray[] = RandomNumber(numAns);
         numPos_1 = numAns;
         numPos_2 = numPosArray[0];
@@ -82,6 +102,25 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         Questions = rnd.nextInt(3);
         InitQuestions(Questions);
 
+        timer = new CountDownTimer(TimerValue,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG_MESSAGE,"TIMER IS:"+millisUntilFinished/1000);
+            }
+            @Override
+            public void onFinish() {
+                Log.d(TAG_MESSAGE,"TIMES UP!");
+                SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+                SharedPreferences.Editor edit =pref_score.edit();
+                edit.putInt(TAG_KEY,0);
+                edit.apply();
+                cancel();
+                Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+                StoreHighScore(score);
+                finish();
+                startActivity(gameOver);
+            }
+        }.start();
 
     }
 
@@ -113,7 +152,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
     private int GenerateSecondNum(int x){
         int y;
         Random rnd = new Random();
-        y= rnd.nextInt(x/2)+1;
+        y= rnd.nextInt(x);
         return y;
     }
 
@@ -244,15 +283,18 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             case 0:
                 AnsNum = btn_sub1.getText().toString();
                 Log.d(TAG_MESSAGE,"Answer is: "+AnsNum);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
                 break;
             case 1:
                 ColorAns = btn_sub1.getCurrentTextColor();
                 Log.d(TAG_MESSAGE,"Text Color is: "+ColorAns);
+                GetAnswer(ColorAns,colorAnswer);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_sub1.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(TAG_MESSAGE,"BG Color is: "+BGColorAns);
+                GetAnswer(BGColorAns,bgColorAnswer);
                 break;
         }
 
@@ -263,15 +305,18 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             case 0:
                 AnsNum = btn_sub2.getText().toString();
                 Log.d(TAG_MESSAGE,"Answer is: "+AnsNum);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
                 break;
             case 1:
                 ColorAns = btn_sub2.getCurrentTextColor();
                 Log.d(TAG_MESSAGE,"Text Color is: "+ColorAns);
+                GetAnswer(ColorAns,colorAnswer);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_sub2.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(TAG_MESSAGE,"BG Color is: "+BGColorAns);
+                GetAnswer(BGColorAns,bgColorAnswer);
                 break;
         }
 
@@ -282,26 +327,84 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             case 0:
                 AnsNum = btn_sub3.getText().toString();
                 Log.d(TAG_MESSAGE,"Answer is: "+AnsNum);
-
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
                 break;
             case 1:
                 ColorAns = btn_sub3.getCurrentTextColor();
                 Log.d(TAG_MESSAGE,"Text Color is: "+ColorAns);
+                GetAnswer(ColorAns,colorAnswer);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_sub3.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(TAG_MESSAGE,"BG Color is: "+BGColorAns);
+                GetAnswer(BGColorAns,bgColorAnswer);
                 break;
         }
 
     }
 
+    private void GetAnswer(int ansValue,int ans){
+        Log.d(TAG_MESSAGE,"Your Choosen Answer: "+ansValue);
+        Log.d(TAG_MESSAGE, "Correct Answer: "+ans);
+        if (ans == ansValue){
+            Log.d(TAG_MESSAGE,"Correct!");
+            SharedPreferences pref_getScore = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            int newScore = pref_getScore.getInt(TAG_KEY,0);
+            newScore++;
 
-    private void TestFinish(){
+            SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor edit =pref_score.edit();
+            edit.putInt(TAG_KEY,newScore);
+            edit.apply();
 
-        Intent restart = getIntent();
-        finish();
-        startActivity(restart);
+            StoreNewNum(numAns);
+            Intent restartActivity = getIntent();
+            finish();
+            startActivity(restartActivity);
+            timer.cancel();
+        }
+        else {
+            Log.d(TAG_MESSAGE,"Wrong!");
+            SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor edit =pref_score.edit();
+            edit.putInt(TAG_KEY,0);
+            edit.apply();
+
+            Intent gameOver = new Intent(getApplicationContext(),StartGame.class);
+            finish();
+            StoreHighScore(score);
+            startActivity(gameOver);
+            timer.cancel();
+        }
+    }
+
+    int x;
+    private int GenerateNewNum(int score){
+
+        Log.d(TAG_MESSAGE,"score is :"+score);
+        if (score<1){
+            x=2;
+        }
+        else {
+            SharedPreferences getStoreNumAns = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+            x = getStoreNumAns.getInt(TAG_NUMBER,0);
+            if (x>=200){
+                x=5;
+            }
+        }
+        return x*2;
+    }
+
+    private void StoreNewNum(int numAns){
+        SharedPreferences storeNumAns = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        SharedPreferences.Editor editor = storeNumAns.edit();
+        editor.putInt(TAG_NUMBER,numAns);
+        editor.apply();
+    }
+
+    private void StoreHighScore(int score){
+        Log.d(TAG_MESSAGE,"checking highscore: "+score);
+        dbHelper.UpdateDBScore(2,score);
     }
 }

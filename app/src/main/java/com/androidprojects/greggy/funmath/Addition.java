@@ -64,10 +64,6 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         tv_question2 = (TextView) findViewById(R.id.tv_addQuestion_2);
 
         dbHelper = new DBHelper(this);
-        String data = dbHelper.getTableValues();
-        Log.d(DEBUG_MESSAGE,data);
-        int numRows = dbHelper.CheckRowNum();
-        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
 
         btn_firstNum =(Button) findViewById(R.id.btn_FirstNum);
         btn_firstNum.setOnClickListener(this);
@@ -85,7 +81,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
 
         int x,y;
         x  = GenerateNewNum(score);
-        y=GenerateSecondNum(x);
+        y = GenerateSecondNum(x);
         Log.d(DEBUG_MESSAGE,"Value of x is :"+x+" Value of y is:"+y);
         tv_questionNum.setText(String.valueOf(x)+" + "+ String.valueOf(y)+"= ?");
         numAns = x+y;

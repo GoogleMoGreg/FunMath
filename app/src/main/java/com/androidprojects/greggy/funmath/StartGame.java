@@ -28,6 +28,11 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
         btn_mul = (Button) findViewById(R.id.btn_multiplication);
         btn_mul.setOnClickListener(this);
 
+        String data = dbHelper.getTableValues();
+        Log.d(DEBUG_MESSAGE,data);
+        int numRows = dbHelper.CheckRowNum();
+        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
+
     }
 
     @Override

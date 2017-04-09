@@ -54,6 +54,9 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.btn_multiplication:
                 Log.d(DEBUG_MESSAGE,"Clicked "+btn_mul.getText());
+                Intent Multiplication = new Intent(this, com.androidprojects.greggy.funmath.Multiplication.class);
+                this.finish();
+                startActivity(Multiplication);
                 break;
         }
 

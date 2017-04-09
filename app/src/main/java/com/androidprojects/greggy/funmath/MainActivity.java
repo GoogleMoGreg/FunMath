@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_highscore:
                 Log.d(DEBUG_MESSAGE,"Clicked "+btn_highscore.getText());
+                Intent Highscore = new Intent(getApplicationContext(), com.androidprojects.greggy.funmath.Highscore.class);
+                startActivity(Highscore);
                 break;
 
             case R.id.btn_about:

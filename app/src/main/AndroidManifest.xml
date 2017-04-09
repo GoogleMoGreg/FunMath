@@ -19,7 +19,8 @@
         <activity android:name=".Addition" />
         <activity android:name=".Subtraction" />
         <activity android:name=".GameOver" />
-        <activity android:name=".Multiplication"></activity>
+        <activity android:name=".Multiplication" />
+        <activity android:name=".Highscore"></activity>
     </application>
 
 </manifest>

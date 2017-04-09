@@ -1,10 +1,12 @@
 package com.androidprojects.greggy.funmath;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -416,8 +418,30 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void onBackPressed(){
+        timer.cancel();
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage("Do you want to quit?");
+        alertDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ClosingActivity();
+                    }
+                });
+        alertDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        timer.start();
+                    }
+                });
+        AlertDialog dialog = alertDialog.create();
+        dialog.show();
+    }
+
+    public void ClosingActivity(){
+
         timer.cancel();
         SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         SharedPreferences.Editor edit =pref_score.edit();

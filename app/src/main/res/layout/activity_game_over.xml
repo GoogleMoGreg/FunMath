@@ -26,4 +26,20 @@
         android:layout_below="@+id/tv_gameoverScore"
         />
 
+    <Button
+        android:id="@+id/btn_tryagain_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="yes"
+        android:layout_below="@+id/tv_highScore"
+        />
+    <Button
+        android:id="@+id/btn_tryagain_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="no"
+        android:layout_below="@id/tv_highScore"
+        android:layout_toRightOf="@id/btn_tryagain_y"
+        />
+
 </RelativeLayout>

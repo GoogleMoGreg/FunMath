@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;

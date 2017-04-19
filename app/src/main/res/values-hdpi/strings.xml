@@ -3,4 +3,8 @@
 
     <string name="HEADER_NAME_FUN">FUN</string>
     <string name="HEADER_NAME_MATH">MATH</string>
+
+    <string name="MAIN_BTN_STARTGAME">s\u0020 t\u0020 a\u0020 r\u0020 t\u0020\u0020 g\u0020 a\u0020 m\u0020 e\u0020</string>
+    <string name="MAIN_BTN_BESTSCORE">b\u0020 e\u0020 s\u0020 t\u0020\u0020  s\u0020 c\u0020 o\u0020 r\u0020 e\u0020 s\u0020</string>
+    <string name="MAIN_BTN_TUTORIAL">t\u0020 u\u0020 t\u0020 o\u0020 r\u0020 i\u0020 a\u0020 l</string>
 </resources>

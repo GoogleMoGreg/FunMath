@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
         tv_FUN.setTypeface(font);
         tv_MATH.setTypeface(font);
+        btn_about.setTypeface(font);
+        btn_highscore.setTypeface(font);
+        btn_startgame.setTypeface(font);
 
 
     }

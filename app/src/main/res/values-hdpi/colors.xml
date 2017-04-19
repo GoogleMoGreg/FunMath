@@ -8,5 +8,6 @@
     <color name="DARKTEAL">#00796B</color>
     <color name="LIGHTBLUE">#448AFF</color>
     <color name="WHITE">#FFFFFF</color>
+    <color name="BLACK">#000000</color>
 
 </resources>

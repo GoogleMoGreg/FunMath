@@ -12,6 +12,21 @@
     <dimen name="main_activity_headermarginIC_right">10dp</dimen>
 
     <dimen name="main_activity_btnbackground_height">35dp</dimen>
+    <dimen name="main_activity_btntxt_size">15sp</dimen>
+    <dimen name="main_activity_btnbackground_lLayoutStartGame_height">26dp</dimen>
+    <dimen name="main_activity_btnbackground_lLayoutHighScore_height">20dp</dimen>
+    <dimen name="main_activity_btnbackground_fLayoutHighScore_margintop">80dp</dimen>
+    <dimen name="main_activity_btnbackground_lLayoutHighScore_margintop">30dp</dimen>
+    <dimen name="main_activity_btnbackground_lLayoutTutorial_height">18dp</dimen>
+    <dimen name="main_activity_btnbackground_fLayoutTutorial_height">86dp</dimen>
+    <dimen name="main_activity_btnbackground_lLayoutTutorial_Endheight">50dp</dimen>
+    <dimen name="main_activity_btnbackground_lLayoutTutorial_Endmargintop">33dp</dimen>
+    <dimen name="main_activity_btnmargin_right">40dp</dimen>
+    <dimen name="main_activity_btnmargin_left">40dp</dimen>
+    <dimen name="main_activity_btnbackground_flayoutMarginTop">20dp</dimen>
+    <dimen name="main_activity_btnbackground_marginTop">30dp</dimen>
+    <dimen name="main_activity_btnbackground_layoutHeight">30dp</dimen>
+
 
 
 </resources>

@@ -65,6 +65,7 @@
            android:gravity="center"
            android:layout_below="@+id/lLayout_MainHeader"
            android:layout_marginTop="@dimen/main_activity_headermarginIC_bottom"
+
            >
            <ImageView
                android:id="@+id/ic_subHeader"
@@ -94,142 +95,52 @@
         </FrameLayout>
 
     </RelativeLayout>
-    <LinearLayout
+
+
+    <Button
+        android:id="@+id/btn_startgame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-    </LinearLayout>
-    <RelativeLayout
-        android:id="@+id/rLayout_Mainbtn"
+        android:text="@string/MAIN_BTN_STARTGAME"
+        android:textColor="@color/WHITE"
+        android:textSize="@dimen/main_activity_btntxt_size"
+        android:textAllCaps="false"
+        android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+        android:layout_marginRight="@dimen/main_activity_btnmargin_right"
+        android:background="@drawable/roundbtn"
+        android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        />
+
+    <Button
+        android:id="@+id/btn_highscore"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MAIN_BTN_BESTSCORE"
+        android:textSize="@dimen/main_activity_btntxt_size"
+        android:textColor="@color/WHITE"
+        android:textAllCaps="false"
+        android:layout_marginRight="@dimen/main_activity_btnmargin_right"
+        android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+        android:background="@drawable/roundbtn"
+        android:layout_marginTop="@dimen/main_activity_btnmargin_top"
 
-        >
-        <LinearLayout
-            android:id="@+id/lLayout_btnbackground_startgame"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_activity_btnbackground_height"
-            android:background="@color/TEAL"
-            android:orientation="horizontal"
-            >
-        </LinearLayout>
-        <FrameLayout
-            android:id="@+id/fLayout_btnbackground_startgame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lLayout_btnbackground_startgame"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/main_activity_btnbackground_flayoutMarginTop"
-            >
-            <Button
-                android:id="@+id/btn_startgame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_btn"
-                android:text="@string/MAIN_BTN_STARTGAME"
-                android:textColor="@color/BLACK"
-                android:textSize="@dimen/main_activity_btntxt_size"
-                android:textAllCaps="false"
-                android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
-                android:layout_marginRight="@dimen/main_activity_btnmargin_right"
-                />
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <LinearLayout
-                    android:layout_marginTop="@dimen/main_activity_btnbackground_marginTop"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/main_activity_btnbackground_lLayoutStartGame_height"
-                    android:background="@color/TEAL"
-                    >
-                </LinearLayout>
-            </FrameLayout>
-        </FrameLayout>
+        />
 
-        <LinearLayout
-            android:id="@+id/lLayout_btnbackground_highscore"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_activity_btnbackground_lLayoutHighScore_height"
-            android:background="@color/TEAL"
-            android:orientation="horizontal"
-            android:layout_below="@+id/fLayout_btnbackground_startgame"
-            >
-        </LinearLayout>
-        <FrameLayout
-            android:id="@+id/fLayout_btnbackground_highscore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lLayout_btnbackground_highscore"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/main_activity_btnbackground_fLayoutHighScore_margintop"
-            >
-            <Button
-            android:id="@+id/btn_highscore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/MAIN_BTN_BESTSCORE"
-            android:textSize="@dimen/main_activity_btntxt_size"
-            android:textColor="@color/BLACK"
-            android:textAllCaps="false"
-            android:layout_marginRight="@dimen/main_activity_btnmargin_right"
-            android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
-            android:background="@drawable/ic_btn"
-            />
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <LinearLayout
-                    android:layout_marginTop="@dimen/main_activity_btnbackground_lLayoutHighScore_margintop"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/main_activity_btnbackground_layoutHeight"
-                    android:background="@color/TEAL"
-                    >
-                </LinearLayout>
-            </FrameLayout>
-        </FrameLayout>
-        <LinearLayout
-            android:id="@+id/lLayout_btnbackground_tutorial"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_activity_btnbackground_lLayoutTutorial_height"
-            android:background="@color/TEAL"
-            android:orientation="horizontal"
-            android:layout_below="@+id/fLayout_btnbackground_highscore"
-            >
-        </LinearLayout>
-        <FrameLayout
-            android:id="@+id/fLayout_btnbackground_tutorial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fLayout_btnbackground_highscore"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-            <Button
-                android:id="@+id/btn_about"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/MAIN_BTN_TUTORIAL"
-                android:textColor="@color/BLACK"
-                android:textAllCaps="false"
-                android:textSize="@dimen/main_activity_btntxt_size"
-                android:background="@drawable/ic_btn"
-                android:layout_marginRight="@dimen/main_activity_btnmargin_right"
-                android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
-                />
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MAIN_BTN_TUTORIAL"
+        android:textColor="@color/WHITE"
+        android:textAllCaps="false"
+        android:textSize="@dimen/main_activity_btntxt_size"
+        android:layout_marginRight="@dimen/main_activity_btnmargin_right"
+        android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+        android:background="@drawable/roundbtn"
+        android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="86dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/main_activity_btnbackground_lLayoutTutorial_Endheight"
-                    android:layout_marginTop="@dimen/main_activity_btnbackground_lLayoutTutorial_Endmargintop"
-                    android:background="@color/TEAL">
-                </LinearLayout>
-            </FrameLayout>
-        </FrameLayout>
 
-    </RelativeLayout>
+
+
 </LinearLayout>

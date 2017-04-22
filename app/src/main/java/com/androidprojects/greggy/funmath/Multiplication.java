@@ -31,9 +31,9 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
             colorPos_1,colorPos_2,colorPos_3,
             bgColorPos_1,bgColorPos_2,bgColorPos_3;
 
-    int colorRed = Color.RED,
-            colorGreen = Color.GREEN,
-            colorBlue = Color.BLUE;
+    int colorRed = Color.rgb(255,82,82),
+            colorGreen = Color.rgb(76,175,80),
+            colorBlue = Color.rgb(68,138,255);
 
     int Questions;
     String arrayQuestions[] = new String[]{"Answer","Number","Box"};
@@ -239,15 +239,15 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
     private void ColorPickerTxt(int colorPos_1){
         switch (colorPos_1){
 
-            case -65536:
+            case -44462:
                 tv_question2.setTextColor(colorPos_1);
                 tv_question2.setText("RED");
                 break;
-            case -16711936:
+            case -11751600:
                 tv_question2.setTextColor(colorPos_1);
                 tv_question2.setText("GREEN");
                 break;
-            case -16776961:
+            case -12285185:
                 tv_question2.setTextColor(colorPos_1);
                 tv_question2.setText("BLUE");
                 break;
@@ -259,15 +259,15 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
     private void ColorPickerBox(int bgColorPos_1){
         switch (bgColorPos_1){
 
-            case -65536:
+            case -44462:
                 tv_question2.setTextColor(bgColorPos_1);
                 tv_question2.setText("RED");
                 break;
-            case -16711936:
+            case -11751600:
                 tv_question2.setTextColor(bgColorPos_1);
                 tv_question2.setText("GREEN");
                 break;
-            case -16776961:
+            case -12285185:
                 tv_question2.setTextColor(bgColorPos_1);
                 tv_question2.setText("BLUE");
                 break;

@@ -30,9 +30,9 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     int score;
     int  numAns, numPos_1, numPos_2, numPos_3;
 
-        int textRed = Color.rgb(255,0,0),
-            textGreen = Color.rgb(0,255,0),
-            textBlue = Color.rgb(0,0,255);
+        int textRed = Color.rgb(255,82,82),
+            textGreen = Color.rgb(76,175,80),
+            textBlue = Color.rgb(68,138,255);
 
         int colorPos_1,colorPos_2,colorPos_3;
 
@@ -327,15 +327,15 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     private void ColorPickerTxt(int colorPos_1){
         switch (colorPos_1){
 
-            case -65536:
+            case -44462:
                 tv_question1.setTextColor(colorPos_1);
                 tv_question1.setText("RED");
                 break;
-            case -16711936:
+            case -11751600:
                 tv_question1.setTextColor(colorPos_1);
                 tv_question1.setText("GREEN");
                 break;
-            case -16776961:
+            case -12285185:
                 tv_question1.setTextColor(colorPos_1);
                 tv_question1.setText("BLUE");
                 break;
@@ -347,15 +347,15 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     private void ColorPickerBox(int bgColorPos_1){
         switch (bgColorPos_1){
 
-            case -65536:
+            case -44462:
                 tv_question1.setTextColor(bgColorPos_1);
                 tv_question1.setText("RED");
                 break;
-            case -16711936:
+            case -11751600:
                 tv_question1.setTextColor(bgColorPos_1);
                 tv_question1.setText("GREEN");
                 break;
-            case -16776961:
+            case -12285185:
                 tv_question1.setTextColor(bgColorPos_1);
                 tv_question1.setText("BLUE");
                 break;

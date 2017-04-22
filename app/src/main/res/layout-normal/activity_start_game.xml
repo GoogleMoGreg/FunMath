@@ -73,14 +73,17 @@
             android:text="@string/STARTGAME_BTN_ADD"
             android:textAllCaps="false"
             android:textColor="@color/BLACK"
-            android:textSize="@dimen/startgame_activity_btntxt_size" />
+            android:textSize="@dimen/startgame_activity_btntxt_size"
+            style="?android:borderlessButtonStyle"
+            />
 
         <ImageView
             android:id="@+id/iv_bordersubbtn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/startgame_activity_border_height"
             android:layout_below="@id/btn_addition"
-            android:background="@color/TEAL" />
+            android:background="@color/TEAL"
+            />
 
         <ImageView
             android:id="@+id/ic_logoadd"
@@ -123,6 +126,7 @@
             android:textAllCaps="false"
             android:textColor="@color/BLACK"
             android:textSize="@dimen/startgame_activity_btntxt_size"
+            style="?android:borderlessButtonStyle"
             />
         <Button
             android:id="@+id/btn_multiplication"
@@ -135,6 +139,7 @@
             android:textSize="@dimen/startgame_activity_btntxt_size"
             android:textAllCaps="false"
             android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+            style="?android:borderlessButtonStyle"
             />
 
         <ImageView

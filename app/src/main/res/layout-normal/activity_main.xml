@@ -109,6 +109,7 @@
         android:layout_marginRight="@dimen/main_activity_btnmargin_right"
         android:background="@drawable/roundbtn"
         android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        style="?android:borderlessButtonStyle"
         />
 
     <Button
@@ -123,6 +124,7 @@
         android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
         android:background="@drawable/roundbtn"
         android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        style="?android:borderlessButtonStyle"
 
         />
 
@@ -138,6 +140,7 @@
         android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
         android:background="@drawable/roundbtn"
         android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        style="?android:borderlessButtonStyle"
         />
 
 

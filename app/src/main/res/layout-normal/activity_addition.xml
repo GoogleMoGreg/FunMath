@@ -4,86 +4,145 @@
     android:id="@+id/activity_addition"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/WHITE"
     tools:context="com.androidprojects.greggy.funmath.Addition">
 
-    <TextView
-        android:id="@+id/tv_addscore"
+    <LinearLayout
+        android:id="@+id/lLayout_addHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Score"
-        />
-    <TextView
-        android:id="@+id/tv_addtimer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Time is"
-        android:layout_below="@+id/tv_addscore"
-        />
-    <TextView
-        android:id="@+id/tv_addNumQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2 + 2 = ? "
-        android:textSize="24sp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_below="@+id/tv_addtimer"
-        />
-    <TextView
-        android:id="@+id/tv_addQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick the right answer "
-        android:textSize="20sp"
-        android:layout_below="@+id/tv_addNumQuestion"
-        />
-    <TextView
-        android:id="@+id/tv_addQuestion_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="blah"
-        android:textSize="20sp"
-        android:layout_below="@+id/tv_addNumQuestion"
-        android:layout_toRightOf="@id/tv_addQuestion"
-        />
+        android:background="@color/DARKTEAL"
+        >
 
-    <TextView
-        android:id="@+id/tv_addQuestion_2"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_addFUN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/HEADER_NAME_FUN"
+            android:textSize="45sp"
+            android:textColor="@color/WHITE"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/iv_MainHeader_LINE"
+            android:layout_width="@dimen/startgame_activity_headerline_width"
+            android:layout_height="@dimen/main_activity_header_LINE_height"
+            android:background="@color/WHITE"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_addMATH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/HEADER_NAME_MATH"
+            android:textSize="45sp"
+            android:textColor="@color/WHITE"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLayout_addgame"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" blah"
-        android:textSize="20sp"
-        android:layout_below="@+id/tv_addNumQuestion"
-        android:layout_toRightOf="@id/tv_addQuestion_1"
-        />
-    <Button
-        android:id="@+id/btn_FirstNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2"
-        android:textSize="24sp"
-        android:layout_below="@+id/tv_addQuestion"
-        />
-    <Button
-        android:id="@+id/btn_SecondNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2"
-        android:textSize="24sp"
-        android:layout_below="@+id/tv_addQuestion"
-        android:layout_toRightOf="@+id/btn_FirstNum"
-        />
-    <Button
-        android:id="@+id/btn_ThirdNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2"
-        android:textSize="24sp"
-        android:layout_below="@+id/tv_addQuestion"
-        android:layout_toRightOf="@id/btn_SecondNum"
-        />
+        android:layout_below="@id/lLayout_addHeader"
+        >
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/iv_addtimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/timer"
+            />
+
+        <TextView
+            android:id="@+id/tv_addscore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textColor="@color/BLACK"
+            android:layout_below="@+id/iv_addtimer"
+            />
+        <TextView
+            android:id="@+id/tv_addtimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time is"
+            android:layout_below="@+id/tv_addscore"
+            android:textColor="@color/BLACK"
+            />
+        <TextView
+            android:id="@+id/tv_addNumQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2 + 2 = ? "
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_below="@+id/tv_addtimer"
+            android:textColor="@color/BLACK"
+            />
+        <TextView
+            android:id="@+id/tv_addQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick the right answer "
+            android:textSize="20sp"
+            android:layout_below="@+id/tv_addNumQuestion"
+            android:textColor="@color/BLACK"
+            />
+        <TextView
+            android:id="@+id/tv_addQuestion_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="blah"
+            android:textSize="20sp"
+            android:layout_below="@+id/tv_addNumQuestion"
+            android:layout_toRightOf="@id/tv_addQuestion"
+            android:textColor="@color/BLACK"
+            />
+
+        <TextView
+            android:id="@+id/tv_addQuestion_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" blah"
+            android:textSize="20sp"
+            android:layout_below="@+id/tv_addNumQuestion"
+            android:layout_toRightOf="@id/tv_addQuestion_1"
+            android:textColor="@color/BLACK"
+            />
+        <Button
+            android:id="@+id/btn_FirstNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textSize="24sp"
+            android:layout_below="@+id/tv_addQuestion"
+            />
+        <Button
+            android:id="@+id/btn_SecondNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textSize="24sp"
+            android:layout_below="@+id/tv_addQuestion"
+            android:layout_toRightOf="@+id/btn_FirstNum"
+            />
+        <Button
+            android:id="@+id/btn_ThirdNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textSize="24sp"
+            android:layout_below="@+id/tv_addQuestion"
+            android:layout_toRightOf="@id/btn_SecondNum"
+            />
+
+    </RelativeLayout>
+
+
+
 
 </RelativeLayout>

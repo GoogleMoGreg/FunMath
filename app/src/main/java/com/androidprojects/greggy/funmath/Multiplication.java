@@ -10,9 +10,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.transitionseverywhere.TransitionManager;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -118,6 +122,7 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
                 edit.putInt(TAG_KEY,0);
                 edit.apply();
                 cancel();
+                SlideRevealGameOver();
                 Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
                 finish();
                 StoreHighScore(score);
@@ -356,7 +361,7 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
             SharedPreferences.Editor edit =pref_score.edit();
             edit.putInt(TAG_KEY,newScore);
             edit.apply();
-
+            SlideRevealCorrect();
             StoreNewNum(numAns);
             Intent restartActivity = getIntent();
             finish();
@@ -369,8 +374,8 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
             SharedPreferences.Editor edit =pref_score.edit();
             edit.putInt(TAG_KEY,0);
             edit.apply();
-
             timer.cancel();
+            SlideRevealGameOver();
             Intent gameOver = new Intent(this,GameOver.class);
             finish();
             StoreHighScore(score);
@@ -414,6 +419,18 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
     private void StoreHighScore(int score){
         Log.d(TAG_MESSAGE,"checking highscore: "+score);
         dbHelper.UpdateDBScore(3,score);
+    }
+
+    private void SlideRevealGameOver(){
+        final ViewGroup view = (ViewGroup) findViewById(R.id.activity_multiplication);
+        TransitionManager.beginDelayedTransition(view,new com.transitionseverywhere.Slide(Gravity.LEFT));
+        view.setVisibility(View.GONE);
+    }
+
+    private void SlideRevealCorrect(){
+        final ViewGroup view = (ViewGroup) findViewById(R.id.activity_multiplication);
+        TransitionManager.beginDelayedTransition(view,new com.transitionseverywhere.Slide(Gravity.RIGHT));
+        view.setVisibility(View.GONE);
     }
 
     @Override

@@ -27,5 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     testCompile 'junit:junit:4.12'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
-    compile 'com.github.ozodrukh:CircularReveal:1.1.0'
+    compile 'com.andkulikov:transitionseverywhere:1.7.1'
+
 }

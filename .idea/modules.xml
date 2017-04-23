@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/circualreveal/circualreveal.iml" filepath="$PROJECT_DIR$/circualreveal/circualreveal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circualreveal/circualreveal.iml" filepath="$PROJECT_DIR$/circualreveal/circualreveal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-revealmanager/spring-revealmanager.iml" filepath="$PROJECT_DIR$/spring-revealmanager/spring-revealmanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-revealmanager/spring-revealmanager.iml" filepath="$PROJECT_DIR$/spring-revealmanager/spring-revealmanager.iml" />
     </modules>
   </component>

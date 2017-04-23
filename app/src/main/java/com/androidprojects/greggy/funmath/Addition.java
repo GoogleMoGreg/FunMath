@@ -15,21 +15,30 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 import com.transitionseverywhere.TransitionManager;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+
 
 public class Addition extends AppCompatActivity implements View.OnClickListener{
 
-    Button btn_firstNum,btn_secondNum,btn_thirdNum;
-    TextView tv_score,tv_timer,tv_questionNum,tv_question,tv_question1,tv_question2;
+    Button btn_firstNum,btn_secondNum,btn_thirdNum,btn_score;
+    TextView tv_questionNum,tv_question,tv_question1,tv_question2;
+    GifDrawable gifDrawable;
+    GifImageView gif_timer;
 
     String DEBUG_MESSAGE = "MESSAGE";
 
+    long milliLeft;
     int score;
     int  numAns, numPos_1, numPos_2, numPos_3;
 
@@ -66,12 +75,14 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition);
 
-        tv_score = (TextView) findViewById(R.id.tv_addscore);
-        tv_timer = (TextView) findViewById(R.id.tv_addtimer);
         tv_questionNum = (TextView) findViewById(R.id.tv_addNumQuestion);
         tv_question = (TextView) findViewById(R.id.tv_addQuestion);
         tv_question1 = (TextView) findViewById(R.id.tv_addQuestion_1);
         tv_question2 = (TextView) findViewById(R.id.tv_addQuestion_2);
+        btn_score=(Button)findViewById(R.id.btn_addscore);
+        gif_timer = (GifImageView)findViewById(R.id.iv_addtimer);
+        gif_timer.setImageResource(R.drawable.timer);
+        gifDrawable =(GifDrawable)gif_timer.getDrawable();
 
         dbHelper = new DBHelper(this);
 
@@ -87,7 +98,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         SharedPreferences getScore = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         score = getScore.getInt(TAG_KEY,0);
         Log.d(DEBUG_MESSAGE,"score is: "+score);
-        tv_score.setText(String.valueOf(score));
+        btn_score.setText(String.valueOf(score));
 
         int x,y;
         x  = GenerateNewNum(score);
@@ -124,6 +135,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(DEBUG_MESSAGE,"TIMER IS:"+millisUntilFinished/1000);
+                milliLeft=millisUntilFinished;
             }
             @Override
             public void onFinish() {
@@ -525,10 +537,10 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         view.setVisibility(View.GONE);
     }
 
-
     @Override
     public void onBackPressed() {
-        timer.cancel();
+        TimerPause();
+        gifDrawable.stop();
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setMessage("Do you want to quit?");
         alertDialog.setPositiveButton("Yes",
@@ -542,11 +554,42 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        timer.start();
+                        TimerLeft(milliLeft);
+                        gifDrawable.start();
                     }
                 });
         AlertDialog dialog = alertDialog.create();
         dialog.show();
+    }
+
+    private void TimerPause(){
+
+        timer.cancel();
+    }
+
+    private void TimerLeft(long milliLeft){
+        timer = new CountDownTimer(milliLeft,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(DEBUG_MESSAGE,"TIMER IS: "+millisUntilFinished/1000);
+            }
+            @Override
+            public void onFinish() {
+                Log.d(DEBUG_MESSAGE,"TIMES UP!");
+                SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+                SharedPreferences.Editor edit =pref_score.edit();
+                edit.putInt(TAG_KEY,0);
+                edit.apply();
+                cancel();
+                Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
+                finish();
+                SlideRevealGameOver();
+                StoreHighScore(score);
+                gameOver.putExtra(TAG_BUNDLE_SCORE,score);
+                gameOver.putExtra(TAG_BUNDLE_PK,1);
+                startActivity(gameOver);
+            }
+        }.start();
     }
 
     public void ClosingActivity(){

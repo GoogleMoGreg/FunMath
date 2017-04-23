@@ -64,11 +64,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="s e c. r e m a i n i n g !"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="@color/BLACK"
             android:layout_below="@+id/iv_borderaddtimer"
             android:layout_toRightOf="@+id/iv_addtimer"
-            android:layout_toEndOf="@+id/iv_addtimer" />
+            android:layout_toEndOf="@+id/iv_addtimer"
+            android:layout_marginLeft="10dp"
+            />
         <ImageView
             android:id="@+id/iv_borderaddscore"
             android:layout_width="match_parent"
@@ -115,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="s c o r e d  p o i n t s :"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="@color/BLACK"
             android:layout_below="@+id/iv_borderaddscore"
             android:layout_alignLeft="@+id/iv_addtimer"

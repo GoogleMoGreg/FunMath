@@ -29,6 +29,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
 
     String TAG_MESSAGE= "TAG_MESSAGE";
 
+    long milliLeft;
     int numAns,numPos_1,numPos_2,numPos_3,
         colorPos_1,colorPos_2,colorPos_3,
         bgColorPos_1,bgColorPos_2,bgColorPos_3;
@@ -112,6 +113,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG_MESSAGE,"TIMER IS:"+millisUntilFinished/1000);
+                milliLeft=millisUntilFinished;
             }
             @Override
             public void onFinish() {
@@ -430,29 +432,93 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         TransitionManager.beginDelayedTransition(view,new com.transitionseverywhere.Slide(Gravity.RIGHT));
         view.setVisibility(View.GONE);
     }
-
+    int backpress_count = 2;
     @Override
     public void onBackPressed(){
-        timer.cancel();
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("Do you want to quit?");
-        alertDialog.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ClosingActivity();
-                    }
-                });
-        alertDialog.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        timer.start();
-                    }
-                });
-        AlertDialog dialog = alertDialog.create();
-        dialog.show();
+        backpress_count--;
+        BackPressCounter(backpress_count);
     }
+
+    private void BackPressCounter(int count ){
+
+        Log.d(TAG_MESSAGE,"BACK PRESS COUNT: "+count);
+
+        if(count==0){
+            //do nothing...
+            Log.d(TAG_MESSAGE,"DO NOTHING...");
+        }
+        else if(count<0){
+            ClosingActivity();
+        }
+        else {
+            TimerPause();
+            HideActivity();
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("Game Pause !");
+            alertDialog.setMessage("Do you want to quit ?");
+            alertDialog.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ClosingActivity();
+                        }
+                    });
+            alertDialog.setNegativeButton("No",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            RevealActivity();
+                            TimerLeft(milliLeft-1000);
+
+                        }
+                    });
+            AlertDialog dialog = alertDialog.create();
+            dialog.show();
+        }
+    }
+
+    private void HideActivity(){
+
+        View view = findViewById(R.id.activity_subtraction);
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    private void RevealActivity(){
+        View view = findViewById(R.id.activity_subtraction);
+        view.setVisibility(View.VISIBLE);
+
+    }
+
+    private void TimerPause(){
+
+        timer.cancel();
+    }
+
+    private void TimerLeft(long milliLeft){
+        timer = new CountDownTimer(milliLeft-1000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG_MESSAGE,"TIMER IS: "+millisUntilFinished/1000);
+            }
+            @Override
+            public void onFinish() {
+                Log.d(TAG_MESSAGE,"TIMES UP!");
+                SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+                SharedPreferences.Editor edit =pref_score.edit();
+                edit.putInt(TAG_KEY,0);
+                edit.apply();
+                cancel();
+                Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
+                finish();
+                SlideRevealGameOver();
+                StoreHighScore(score);
+                gameOver.putExtra(TAG_BUNDLE_SCORE,score);
+                gameOver.putExtra(TAG_BUNDLE_PK,1);
+                startActivity(gameOver);
+            }
+        }.start();
+    }
+
 
     public void ClosingActivity(){
 

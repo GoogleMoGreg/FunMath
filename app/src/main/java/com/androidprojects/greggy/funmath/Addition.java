@@ -1,6 +1,7 @@
 package com.androidprojects.greggy.funmath;
 
 
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,16 +16,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.TextView;
 import com.transitionseverywhere.TransitionManager;
-
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -32,7 +29,8 @@ import pl.droidsonroids.gif.GifImageView;
 public class Addition extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_firstNum,btn_secondNum,btn_thirdNum,btn_score;
-    TextView tv_questionNum,tv_question,tv_question1,tv_question2;
+    TextView tv_questionNum,tv_question,tv_question1,tv_question2,tv_FUN,tv_MATH,
+             tv_scoredpoints,tv_secremaining;
     GifDrawable gifDrawable;
     GifImageView gif_timer;
 
@@ -69,12 +67,17 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     String TAG_BUNDLE_SCORE= "score";
     String TAG_BUNDLE_PK ="pk";
 
+    Typeface font;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition);
 
+        tv_FUN=(TextView)findViewById(R.id.tv_addFUN);
+        tv_MATH=(TextView)findViewById(R.id.tv_addMATH);
+        tv_secremaining=(TextView)findViewById(R.id.tv_addsecremaining);
+        tv_scoredpoints=(TextView)findViewById(R.id.tv_addscoredpoints);
         tv_questionNum = (TextView) findViewById(R.id.tv_addNumQuestion);
         tv_question = (TextView) findViewById(R.id.tv_addQuestion);
         tv_question1 = (TextView) findViewById(R.id.tv_addQuestion_1);
@@ -83,6 +86,17 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         gif_timer = (GifImageView)findViewById(R.id.iv_addtimer);
         gif_timer.setImageResource(R.drawable.timer);
         gifDrawable =(GifDrawable)gif_timer.getDrawable();
+
+        font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
+        tv_FUN.setTypeface(font);
+        tv_MATH.setTypeface(font);
+        tv_scoredpoints.setTypeface(font);
+        tv_secremaining.setTypeface(font);
+        tv_questionNum.setTypeface(font);
+        tv_question.setTypeface(font);
+        tv_question1.setTypeface(font);
+        tv_question2.setTypeface(font);
+        btn_score.setTypeface(font);
 
         dbHelper = new DBHelper(this);
 
@@ -104,7 +118,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         x  = GenerateNewNum(score);
         y = GenerateSecondNum(x);
         Log.d(DEBUG_MESSAGE,"Value of x is :"+x+" Value of y is:"+y);
-        tv_questionNum.setText(String.valueOf(x)+" + "+ String.valueOf(y)+"= ?");
+        tv_questionNum.setText(String.valueOf(x)+" + "+ String.valueOf(y)+" = ?");
         numAns = x+y;
 
         Log.d(DEBUG_MESSAGE,"value of numAns is :"+numAns);
@@ -132,13 +146,16 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         InitQuestions(Question);
 
         timer = new CountDownTimer(TimerValue,1000){
+
             @Override
             public void onTick(long millisUntilFinished) {
+
                 Log.d(DEBUG_MESSAGE,"TIMER IS:"+millisUntilFinished/1000);
                 milliLeft=millisUntilFinished;
             }
             @Override
             public void onFinish() {
+
                 Log.d(DEBUG_MESSAGE,"TIMES UP!");
                 SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
                 SharedPreferences.Editor edit =pref_score.edit();
@@ -152,10 +169,8 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 gameOver.putExtra(TAG_BUNDLE_SCORE,score);
                 gameOver.putExtra(TAG_BUNDLE_PK,1);
                 startActivity(gameOver);
-
             }
         }.start();
-
     }
 
     @Override
@@ -228,6 +243,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void GetSecondBtnValue(int Question,int numAnswer,int colorAnswer,int bgColorAnswer){
+
         switch (Question){
             case 0:
                 AnsNum = btn_secondNum.getText().toString();
@@ -250,7 +266,9 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void GetThirdBtnValue(int Question,int numAnswer,int colorAnswer,int bgColorAnswer){
+
         switch (Question){
+
             case 0:
                 AnsNum = btn_thirdNum.getText().toString();
                 Log.d(DEBUG_MESSAGE,"Answer is: "+AnsNum);
@@ -272,6 +290,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void GetAnswer(int ansValue,int ans){
+
         Log.d(DEBUG_MESSAGE,"Your Choosen Answer: "+ansValue);
         Log.d(DEBUG_MESSAGE, "Correct Answer: "+ans);
         if (ans == ansValue){
@@ -279,7 +298,6 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
             SharedPreferences pref_getScore = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
             int newScore = pref_getScore.getInt(TAG_KEY,0);
             newScore++;
-
             SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
             SharedPreferences.Editor edit =pref_score.edit();
             edit.putInt(TAG_KEY,newScore);
@@ -292,8 +310,8 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
             timer.cancel();
         }
         else {
-            Log.d(DEBUG_MESSAGE,"Wrong!");
 
+            Log.d(DEBUG_MESSAGE,"Wrong!");
             SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
             SharedPreferences.Editor edit =pref_score.edit();
             edit.putInt(TAG_KEY,0);
@@ -306,8 +324,6 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
             gameOver.putExtra(TAG_BUNDLE_SCORE,score);
             gameOver.putExtra(TAG_BUNDLE_PK,1);
             startActivity(gameOver);
-
-
         }
     }
 
@@ -356,9 +372,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 tv_question1.setTextColor(colorPos_1);
                 tv_question1.setText("BLUE");
                 break;
-
         }
-
     }
 
     private void ColorPickerBox(int bgColorPos_1){
@@ -376,9 +390,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 tv_question1.setTextColor(bgColorPos_1);
                 tv_question1.setText("BLUE");
                 break;
-
         }
-
     }
 
     int x;
@@ -537,29 +549,50 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
         view.setVisibility(View.GONE);
     }
 
+    int backpress_count = 2;
     @Override
     public void onBackPressed() {
-        TimerPause();
-        gifDrawable.stop();
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("Do you want to quit?");
-        alertDialog.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ClosingActivity();
-                    }
-                });
-        alertDialog.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        TimerLeft(milliLeft);
-                        gifDrawable.start();
-                    }
-                });
-        AlertDialog dialog = alertDialog.create();
-        dialog.show();
+       backpress_count--;
+        BackPressCounter(backpress_count);
+    }
+
+    private void BackPressCounter(int count ){
+
+        Log.d(DEBUG_MESSAGE,"BACK PRESS COUNT: "+count);
+
+        if(count==0){
+            //do nothing...
+            Log.d(DEBUG_MESSAGE,"DO NOTHING...");
+        }
+        else if(count<0){
+            ClosingActivity();
+        }
+        else {
+            TimerPause();
+            HideActivity();
+            gifDrawable.stop();
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("Game Pause !");
+            alertDialog.setMessage("Do you want to quit ?");
+            alertDialog.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ClosingActivity();
+                        }
+                    });
+            alertDialog.setNegativeButton("No",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            RevealActivity();
+                            TimerLeft(milliLeft-1000);
+                            gifDrawable.start();
+                        }
+                    });
+            AlertDialog dialog = alertDialog.create();
+            dialog.show();
+        }
     }
 
     private void TimerPause(){
@@ -590,6 +623,18 @@ public class Addition extends AppCompatActivity implements View.OnClickListener{
                 startActivity(gameOver);
             }
         }.start();
+    }
+
+    private void HideActivity(){
+
+        View view = findViewById(R.id.activity_addition);
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    private void RevealActivity(){
+
+        View view = findViewById(R.id.activity_addition);
+        view.setVisibility(View.VISIBLE);
     }
 
     public void ClosingActivity(){

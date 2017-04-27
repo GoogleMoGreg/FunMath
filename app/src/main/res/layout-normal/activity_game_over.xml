@@ -19,8 +19,8 @@
             android:id="@+id/tv_GAME"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="45sp"
-            android:text="GAME"
+            android:textSize="@dimen/gameover_activity_txtsize_GAME"
+            android:text="@string/GAMEOVER_GAME"
             android:textColor="@color/WHITE"
             android:gravity="center"
             />
@@ -28,9 +28,9 @@
             android:id="@+id/tv_OVER"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="OVER"
+            android:text="@string/GAMEOVER_OVER"
             android:textColor="@color/WHITE"
-            android:textSize="45sp"
+            android:textSize="@dimen/gameover_activity_txtsize_OVER"
             android:gravity="center"
             />
     </LinearLayout>
@@ -46,25 +46,25 @@
         <ImageView
             android:id="@+id/iv_bordergameoverscore"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/gameover_activity_height_border"
             android:background="@color/TEAL"
             />
         <TextView
             android:id="@+id/tv_gameoverScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="s c o r e d  p o i n t s :"
-            android:textSize="15sp"
+            android:text="@string/GAMEOVER_SCOREDPOINTS"
+            android:textSize="@dimen/gameover_activity_txtsize_scoredpoints"
             android:textColor="@color/BLACK"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/gameover_activity_marginleft_scoredpoints"
             android:layout_below="@+id/iv_bordergameoverscore"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="@dimen/gameover_activity_margintop_scoredpoints"
+            android:layout_marginBottom="@dimen/gameover_activity_marginbottom_scoredpoints"
             />
         <ImageView
             android:id="@+id/iv_borderbestscore"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/gameover_activity_height_border"
             android:background="@color/TEAL"
             android:layout_below="@+id/tv_gameoverScore"
             />
@@ -73,7 +73,7 @@
             android:id="@+id/imgbtn_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="@dimen/gameover_activity_txtsize_imgscore"
             android:text="100"
             android:background="@drawable/ic_score"
             android:layout_alignParentTop="true"
@@ -84,22 +84,22 @@
             android:id="@+id/tv_highScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="B E S T  S C O R E"
+            android:text="@string/GAMEOVER_BESTSCORE"
             android:textColor="@color/BLACK"
-            android:textSize="15sp"
+            android:textSize="@dimen/gameover_activity_txtsize_bestscore"
             android:layout_below="@+id/iv_borderbestscore"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/gameover_activity_margintop_bestscore"
+            android:layout_marginLeft="@dimen/gameover_activity_marginleft_bestscore"
             android:gravity="center"
             />
 
         <ImageView
             android:id="@+id/iv_borderbestscoreend"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/gameover_activity_height_border"
             android:background="@color/TEAL"
             android:layout_below="@+id/imgbtn_score"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/gameover_activity_margintop_endborder"
             />
 
         <Button
@@ -108,8 +108,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_bestscore"
             android:text="100"
-            android:textSize="20sp"
-            android:paddingBottom="30dp"
+            android:textSize="@dimen/gameover_activity_txtsize_imgscore"
+            android:paddingBottom="@dimen/gameover_activity_marginbottom_bestscore"
             android:layout_below="@+id/tv_highScore"
             android:layout_centerHorizontal="true" />
 
@@ -122,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="m u l t i p l i c a t i o n"
-        android:textSize="24sp"
+        android:textSize="@dimen/gameover_activity_txtsize_category"
         android:gravity="center"
         android:layout_below="@+id/rLayout_gameover"
         android:textColor="@color/BLACK"
@@ -132,38 +132,38 @@
         android:id="@+id/tv_playagain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="p l a y  a g a i n ?"
-        android:textSize="30sp"
+        android:text="@string/GAMEOVER_PLAYAGAIN"
+        android:textSize="@dimen/gameover_activity_txtsize_playagain"
         android:gravity="center"
         android:layout_below="@+id/tv_gamecategory"
         android:textColor="@color/BLACK"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/gameover_activity_margintop_playagain"
         />
     <Button
         android:id="@+id/btn_tryagain_y"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yes"
-        android:textSize="20sp"
+        android:text="@string/GAMEOVER_BTNYES"
+        android:textSize="@dimen/gameover_activity_txtsize_tryagain"
         android:textAllCaps="false"
         android:layout_below="@id/tv_playagain"
         android:drawableRight="@drawable/ic_yes"
         android:background="@color/WHITE"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainY"
         />
     <Button
         android:id="@+id/btn_tryagain_n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No"
+        android:text="@string/GAMEOVER_BTNNO"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="@dimen/gameover_activity_txtsize_tryagain"
         android:layout_toRightOf="@id/btn_tryagain_y"
         android:layout_below="@+id/tv_playagain"
         android:drawableRight="@drawable/ic_no"
         android:background="@color/WHITE"
-        android:paddingLeft="15dp"
-        android:layout_marginLeft="70dp"
+        android:paddingLeft="@dimen/gameover_activity_paddingleft_tryagainN"
+        android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainN"
         />
 
 </RelativeLayout>

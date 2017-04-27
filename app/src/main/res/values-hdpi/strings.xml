@@ -16,4 +16,20 @@
 
     <string name="INGAME_SECREMAINING">s\u0020e\u0020c. r\u0020e\u0020m\u0020a\u0020i\u0020n\u0020i\u0020n\u0020g\u0020 !</string>
     <string name="INGAME_SCOREDPOINTS">s\u0020c\u0020o\u0020r\u0020e\u0020d\u0020 p\u0020o\u0020i\u0020n\u0020t\u0020s\u0020 :</string>
+
+    <string name="GAMEOVER_GAME">GAME</string>
+    <string name="GAMEOVER_OVER">OVER</string>
+    <string name="GAMEOVER_SCOREDPOINTS">s\u0020c\u0020o\u0020r\u0020e\u0020d\u0020\u0020
+                                         p\u0020o\u0020i\u0020n\u0020t\u0020s\u0020</string>
+    <string name="GAMEOVER_BESTSCORE">B\u0020E\u0020S\u0020T\u0020\u0020S\u0020C\u0020O\u0020R\u0020E\u0020</string>
+    <string name="GAMEOVER_PLAYAGAIN">p\u0020l\u0020a\u0020y\u0020\u0020a\u0020g\u0020a\u0020i\u0020n\u0020</string>
+    <string name="GAMEOVER_BTNYES">Yes</string>
+    <string name="GAMEOVER_BTNNO">No</string>
+
+
+    <string name="BESTSCORE_BEST">BEST</string>
+    <string name="BESTSCORE_SCORES">SCORES</string>
+    <string name="BESTSCORE_ADD">addition</string>
+    <string name="BESTSCORE_SUB">subtraction</string>
+    <string name="BESTSCORE_MUL">multiplication</string>
 </resources>

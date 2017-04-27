@@ -1,6 +1,7 @@
 package com.androidprojects.greggy.funmath;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class GameOver extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_y,btn_n,btn_scoreis,btn_highscore;
-    TextView tv_gamecategory;
+    TextView tv_gamecategory,tv_GAME,tv_OVER,tv_scoredpoints,
+                tv_bestscore,tv_playagain;
 
     String TAG_BUNDLE_SCORE = "score";
     String TAG_BUNDLE_PK = "pk";
@@ -22,6 +26,10 @@ public class GameOver extends AppCompatActivity implements View.OnClickListener 
 
     DBHelper dbHelper;
 
+    Typeface font;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +38,28 @@ public class GameOver extends AppCompatActivity implements View.OnClickListener 
         tv_gamecategory=(TextView) findViewById(R.id.tv_gamecategory);
         btn_scoreis=(Button)findViewById(R.id.imgbtn_score);
         btn_highscore=(Button)findViewById(R.id.imgbtn_bestscore);
+        tv_GAME=(TextView)findViewById(R.id.tv_GAME);
+        tv_OVER=(TextView)findViewById(R.id.tv_OVER);
+        tv_scoredpoints=(TextView)findViewById(R.id.tv_gameoverScore);
+        tv_bestscore=(TextView)findViewById(R.id.tv_highScore);
+        tv_playagain=(TextView)findViewById(R.id.tv_playagain);
+
         btn_y=(Button)findViewById(R.id.btn_tryagain_y);
         btn_y.setOnClickListener(this);
         btn_n=(Button)findViewById(R.id.btn_tryagain_n);
         btn_n.setOnClickListener(this);
+        font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
+        tv_GAME.setTypeface(font);
+        tv_OVER.setTypeface(font);
+        tv_scoredpoints.setTypeface(font);
+        tv_bestscore.setTypeface(font);
+        tv_gamecategory.setTypeface(font);
+        tv_playagain.setTypeface(font);
+        btn_y.setTypeface(font);
+        btn_n.setTypeface(font);
+
+
+
 
         Bundle bundle = getIntent().getExtras();
         int score = bundle.getInt(TAG_BUNDLE_SCORE);

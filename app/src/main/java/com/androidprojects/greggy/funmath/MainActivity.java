@@ -15,11 +15,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_startgame, btn_highscore, btn_about;
     TextView tv_FUN,tv_MATH;
     Typeface font;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbHelper=new DBHelper(this);
+        GenerateDB();
 
         btn_startgame = (Button) findViewById(R.id.btn_startgame);
         btn_startgame.setOnClickListener(this);
@@ -35,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_about.setTypeface(font);
         btn_highscore.setTypeface(font);
         btn_startgame.setTypeface(font);
+
+        String data = dbHelper.getTableValues();
+        Log.d(DEBUG_MESSAGE,data);
+        int numRows = dbHelper.CheckRowNum();
+        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
 
 
     }
@@ -58,7 +67,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_about:
                 Log.d(DEBUG_MESSAGE,"Clicked "+btn_about.getText());
+                Intent Tutorial = new Intent(getApplicationContext(), com.androidprojects.greggy.funmath.Tutorial.class);
+                startActivity(Tutorial);
                 break;
+        }
+    }
+
+    private void GenerateDB(){
+        int numRows = dbHelper.CheckRowNum();
+        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
+        String[] categoryList ={"Addition","Subtraction","Multiplication"};
+        if (numRows<1){
+            for (int i = 0;i<categoryList.length;i++){
+                dbHelper.InsertData(categoryList[i],String.valueOf(0));
+            }
+            Log.d(DEBUG_MESSAGE,"Successfully Inserted new DB");
+
         }
     }
 }

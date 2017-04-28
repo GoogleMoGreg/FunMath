@@ -28,7 +28,7 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
         dbHelper = new DBHelper(this);
-        GenerateDB();
+
         btn_add = (Button) findViewById(R.id.btn_addition);
         btn_add.setOnClickListener(this);
         btn_sub = (Button) findViewById(R.id.btn_subtraction);
@@ -52,11 +52,6 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
         btn_sub.setTypeface(font);
         btn_mul.setTypeface(font);
 
-
-        String data = dbHelper.getTableValues();
-        Log.d(DEBUG_MESSAGE,data);
-        int numRows = dbHelper.CheckRowNum();
-        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
 
     }
 
@@ -89,18 +84,7 @@ public class StartGame extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    private void GenerateDB(){
-        int numRows = dbHelper.CheckRowNum();
-        Log.d(DEBUG_MESSAGE,"Number of rows "+numRows);
-        String[] categoryList ={"Addition","Subtraction","Multiplication"};
-        if (numRows<1){
-            for (int i = 0;i<categoryList.length;i++){
-                dbHelper.InsertData(categoryList[i],String.valueOf(0));
-            }
-            Log.d(DEBUG_MESSAGE,"Successfully Inserted new DB");
 
-        }
-    }
 
     private void OpenAddition(){
         Intent Addition = new Intent(this, com.androidprojects.greggy.funmath.Addition.class);

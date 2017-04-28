@@ -14,7 +14,7 @@
     <string name="STARTGAME_BTN_SUB">subtraction</string>
     <string name="STARTGAME_BTN_MUL">multiplication</string>
 
-    <string name="INGAME_SECREMAINING">s\u0020e\u0020c. r\u0020e\u0020m\u0020a\u0020i\u0020n\u0020i\u0020n\u0020g\u0020 !</string>
+    <string name="INGAME_SECREMAINING">s\u0020e\u0020c. r\u0020e\u0020m\u0020a\u0020i\u0020n\u0020i\u0020n\u0020g\u0020!</string>
     <string name="INGAME_SCOREDPOINTS">s\u0020c\u0020o\u0020r\u0020e\u0020d\u0020 p\u0020o\u0020i\u0020n\u0020t\u0020s\u0020 :</string>
 
     <string name="GAMEOVER_GAME">GAME</string>

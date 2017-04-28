@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -21,13 +22,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+
 public class Subtraction extends AppCompatActivity implements View.OnClickListener{
 
-    TextView tv_score,tv_questionNum,tv_question1,tv_question2,
-                tv_question3;
-    Button btn_sub1,btn_sub2,btn_sub3;
+    TextView tv_questionNum,tv_question1,tv_question2,
+                tv_question3,tv_FUN,tv_MATH,
+                tv_secremaining,tv_scoredpoints;
+
+    Button btn_sub1,btn_sub2,btn_sub3,imgbtn_score;
 
     String TAG_MESSAGE= "TAG_MESSAGE";
+    GifDrawable gifDrawable;
+    GifImageView gif_timer;
 
     long milliLeft;
     int numAns,numPos_1,numPos_2,numPos_3,
@@ -57,17 +65,37 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
     String TAG_BUNDLE_SCORE= "score";
     String TAG_BUNDLE_PK ="pk";
 
+    Typeface font;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subtraction);
         dbHelper = new DBHelper(this);
 
-        tv_score = (TextView)findViewById(R.id.tv_subscore);
+        tv_FUN=(TextView)findViewById(R.id.tv_subFUN);
+        tv_MATH=(TextView)findViewById(R.id.tv_subMATH);
+        tv_secremaining=(TextView)findViewById(R.id.tv_subsecremaining);
+        tv_scoredpoints=(TextView)findViewById(R.id.tv_subscoredpoints);
+        imgbtn_score=(Button)findViewById(R.id.btn_subscore);
         tv_questionNum = (TextView)findViewById(R.id.tv_subquestionNum);
         tv_question1 = (TextView)findViewById(R.id.tv_subquestion_1);
         tv_question2 = (TextView)findViewById(R.id.tv_subquestion_2);
         tv_question3 = (TextView)findViewById(R.id.tv_subquestion_3);
+        gif_timer=(GifImageView)findViewById(R.id.iv_subtimer);
+
+        font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
+        tv_FUN.setTypeface(font);
+        tv_MATH.setTypeface(font);
+        tv_secremaining.setTypeface(font);
+        tv_scoredpoints.setTypeface(font);
+        tv_questionNum.setTypeface(font);
+        tv_question1.setTypeface(font);
+        tv_question2.setTypeface(font);
+        tv_question3.setTypeface(font);
+        imgbtn_score.setTypeface(font);
+
+        gif_timer.setImageResource(R.drawable.timer);
+        gifDrawable=(GifDrawable)gif_timer.getDrawable();
 
         btn_sub1 = (Button)findViewById(R.id.btn_sub_1);
         btn_sub1.setOnClickListener(this);
@@ -76,10 +104,16 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         btn_sub3 = (Button)findViewById(R.id.btn_sub_3);
         btn_sub3.setOnClickListener(this);
 
+        btn_sub1.setTypeface(font);
+        btn_sub2.setTypeface(font);
+        btn_sub3.setTypeface(font);
+
+
+
         SharedPreferences getScore = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         score = getScore.getInt(TAG_KEY,0);
         Log.d(TAG_MESSAGE,"score is: "+score);
-        tv_score.setText(String.valueOf(score));
+        imgbtn_score.setText(String.valueOf(score));
 
         int x = GenerateNewNum(score),
             y = GenerateSecondNum(x);
@@ -453,6 +487,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         else {
             TimerPause();
             HideActivity();
+            gifDrawable.stop();
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("Game Pause !");
             alertDialog.setMessage("Do you want to quit ?");
@@ -469,6 +504,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
                         public void onClick(DialogInterface dialog, int which) {
                             RevealActivity();
                             TimerLeft(milliLeft-1000);
+                            gifDrawable.start();
 
                         }
                     });
@@ -513,7 +549,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
                 SlideRevealGameOver();
                 StoreHighScore(score);
                 gameOver.putExtra(TAG_BUNDLE_SCORE,score);
-                gameOver.putExtra(TAG_BUNDLE_PK,1);
+                gameOver.putExtra(TAG_BUNDLE_PK,2);
                 startActivity(gameOver);
             }
         }.start();

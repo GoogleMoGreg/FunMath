@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -15,19 +16,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.transitionseverywhere.TransitionManager;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 public class Multiplication extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tv_score,tv_questionNum,tv_question1,tv_question2,
-            tv_question3;
-    Button btn_mul1,btn_mul2,btn_mul3;
+    TextView tv_questionNum,tv_question1,tv_question2,
+            tv_question3,tv_FUN,tv_MATH,tv_scoredpoints,tv_secremaining;
+
+    Button btn_mul1,btn_mul2,btn_mul3,imgbtn_score;
+
+    GifDrawable gifDrawable;
+    GifImageView gif_timer;
 
     String TAG_MESSAGE= "TAG_MESSAGE";
 
@@ -60,17 +65,27 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
     String TAG_BUNDLE_SCORE= "score";
     String TAG_BUNDLE_PK ="pk";
 
+    Typeface font;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplication);
         dbHelper = new DBHelper(this);
 
-        tv_score = (TextView)findViewById(R.id.tv_mulscore);
+        imgbtn_score=(Button)findViewById(R.id.btn_mulscore);
         tv_questionNum = (TextView)findViewById(R.id.tv_mulquestionNum);
         tv_question1 = (TextView)findViewById(R.id.tv_mulquestion_1);
         tv_question2 = (TextView)findViewById(R.id.tv_mulquestion_2);
         tv_question3 = (TextView)findViewById(R.id.tv_mulquestion_3);
+        tv_FUN=(TextView)findViewById(R.id.tv_mulFUN);
+        tv_MATH=(TextView)findViewById(R.id.tv_mulMATH);
+        tv_scoredpoints=(TextView)findViewById(R.id.tv_mulscoredpoints);
+        tv_secremaining=(TextView)findViewById(R.id.tv_mulsecremaining);
+        gif_timer=(GifImageView)findViewById(R.id.iv_multimer);
+
+        gif_timer.setImageResource(R.drawable.timer);
+        gifDrawable=(GifDrawable)gif_timer.getDrawable();
 
         btn_mul1 = (Button)findViewById(R.id.btn_mul_1);
         btn_mul1.setOnClickListener(this);
@@ -79,10 +94,24 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
         btn_mul3 = (Button)findViewById(R.id.btn_mul_3);
         btn_mul3.setOnClickListener(this);
 
+        font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
+        tv_FUN.setTypeface(font);
+        tv_MATH.setTypeface(font);
+        tv_secremaining.setTypeface(font);
+        tv_scoredpoints.setTypeface(font);
+        imgbtn_score.setTypeface(font);
+        tv_questionNum.setTypeface(font);
+        tv_question1.setTypeface(font);
+        tv_question2.setTypeface(font);
+        tv_question3.setTypeface(font);
+        btn_mul1.setTypeface(font);
+        btn_mul2.setTypeface(font);
+        btn_mul3.setTypeface(font);
+
         SharedPreferences getScore = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         score = getScore.getInt(TAG_KEY,0);
         Log.d(TAG_MESSAGE,"score is: "+score);
-        tv_score.setText(String.valueOf(score));
+        imgbtn_score.setText(String.valueOf(score));
 
         int x = GenerateNewNum(score),
                 y = GenerateSecondNum(x);
@@ -457,6 +486,7 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
         else {
             TimerPause();
             HideActivity();
+            gifDrawable.stop();
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("Game Pause !");
             alertDialog.setMessage("Do you want to quit ?");
@@ -473,6 +503,7 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
                         public void onClick(DialogInterface dialog, int which) {
                             RevealActivity();
                             TimerLeft(milliLeft-1000);
+                            gifDrawable.start();
 
                         }
                     });
@@ -517,7 +548,7 @@ public class Multiplication extends AppCompatActivity implements View.OnClickLis
                 SlideRevealGameOver();
                 StoreHighScore(score);
                 gameOver.putExtra(TAG_BUNDLE_SCORE,score);
-                gameOver.putExtra(TAG_BUNDLE_PK,1);
+                gameOver.putExtra(TAG_BUNDLE_PK,3);
                 startActivity(gameOver);
             }
         }.start();

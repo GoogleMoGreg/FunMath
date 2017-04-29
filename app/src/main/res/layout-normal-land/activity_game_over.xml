@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game_over"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WHITE"
+    tools:context="com.androidprojects.greggy.funmath.GameOver">
+
+    <LinearLayout
+        android:id="@+id/lLayout_gameoverHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/DARKTEAL"
+        >
+        <TextView
+            android:id="@+id/tv_GAME"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/gameover_activity_txtsize_GAME"
+            android:text="@string/GAMEOVER_GAME"
+            android:textColor="@color/WHITE"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_OVER"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/GAMEOVER_OVER"
+            android:textColor="@color/WHITE"
+            android:textSize="@dimen/gameover_activity_txtsize_OVER"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLayout_gameover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lLayout_gameoverHeader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/iv_bordergameoverscore"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/gameover_activity_height_border"
+            android:background="@color/TEAL"
+            />
+        <TextView
+            android:id="@+id/tv_gameoverScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/GAMEOVER_SCOREDPOINTS"
+            android:textSize="@dimen/gameover_activity_txtsize_scoredpoints"
+            android:textColor="@color/BLACK"
+            android:layout_marginLeft="@dimen/gameover_activity_marginleft_scoredpoints"
+            android:layout_below="@+id/iv_bordergameoverscore"
+            android:layout_marginTop="@dimen/gameover_activity_margintop_scoredpoints"
+            android:layout_marginBottom="@dimen/gameover_activity_marginbottom_scoredpoints"
+            />
+        <ImageView
+            android:id="@+id/iv_borderbestscore"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/gameover_activity_height_border"
+            android:background="@color/TEAL"
+            android:layout_below="@+id/tv_gameoverScore"
+            />
+
+        <Button
+            android:id="@+id/imgbtn_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/gameover_activity_txtsize_imgscore"
+            android:text="100"
+            android:background="@drawable/ic_score"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/tv_highScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/GAMEOVER_BESTSCORE"
+            android:textColor="@color/BLACK"
+            android:textSize="@dimen/gameover_activity_txtsize_bestscore"
+            android:layout_below="@+id/iv_borderbestscore"
+            android:layout_marginTop="@dimen/gameover_activity_margintop_bestscore"
+            android:layout_marginLeft="@dimen/gameover_activity_marginleft_bestscore"
+            android:gravity="center"
+            />
+
+        <ImageView
+            android:id="@+id/iv_borderbestscoreend"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/gameover_activity_height_border"
+            android:background="@color/TEAL"
+            android:layout_below="@+id/imgbtn_score"
+            android:layout_marginTop="@dimen/gameover_activity_margintop_endborder"
+            />
+
+        <Button
+            android:id="@+id/imgbtn_bestscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_bestscore"
+            android:text="100"
+            android:textSize="@dimen/gameover_activity_txtsize_imgscore"
+            android:paddingBottom="@dimen/gameover_activity_marginbottom_bestscore"
+            android:layout_below="@+id/tv_highScore"
+            android:layout_centerHorizontal="true" />
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_gamecategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="m u l t i p l i c a t i o n"
+        android:textSize="@dimen/gameover_activity_txtsize_category"
+        android:gravity="center"
+        android:layout_below="@+id/rLayout_gameover"
+        android:textColor="@color/BLACK"
+        />
+
+    <TextView
+        android:id="@+id/tv_playagain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/GAMEOVER_PLAYAGAIN"
+        android:textSize="@dimen/gameover_activity_txtsize_playagain"
+        android:gravity="center"
+        android:layout_below="@+id/tv_gamecategory"
+        android:textColor="@color/BLACK"
+        android:layout_marginTop="@dimen/gameover_activity_margintop_playagain"
+        />
+    <Button
+        android:id="@+id/btn_tryagain_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GAMEOVER_BTNYES"
+        android:textSize="@dimen/gameover_activity_txtsize_tryagain"
+        android:textAllCaps="false"
+        android:layout_below="@id/tv_playagain"
+        android:drawableRight="@drawable/ic_yes"
+        android:background="@color/WHITE"
+        android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainY"
+        />
+    <Button
+        android:id="@+id/btn_tryagain_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GAMEOVER_BTNNO"
+        android:textAllCaps="false"
+        android:textSize="@dimen/gameover_activity_txtsize_tryagain"
+        android:layout_toRightOf="@id/btn_tryagain_y"
+        android:layout_below="@+id/tv_playagain"
+        android:drawableRight="@drawable/ic_no"
+        android:background="@color/WHITE"
+        android:paddingLeft="@dimen/gameover_activity_paddingleft_tryagainN"
+        android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainN"
+        />
+
+</RelativeLayout>

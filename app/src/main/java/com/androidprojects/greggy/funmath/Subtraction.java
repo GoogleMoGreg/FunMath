@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import com.transitionseverywhere.TransitionManager;
@@ -152,18 +154,14 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onFinish() {
                 Log.d(TAG_MESSAGE,"TIMES UP!");
+                int answer_array[]=new int[]{numAns,colorPos_1,bgColorPos_1};
                 SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
                 SharedPreferences.Editor edit =pref_score.edit();
                 edit.putInt(TAG_KEY,0);
                 edit.apply();
                 cancel();
-                SlideRevealGameOver();
-                Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
-                finish();
-                StoreHighScore(score);
-                gameOver.putExtra(TAG_BUNDLE_SCORE,score);
-                gameOver.putExtra(TAG_BUNDLE_PK,2);
-                startActivity(gameOver);
+                AnimateShake(answer_array[Questions],Questions);
+                DelayActivity();
             }
         }.start();
 
@@ -328,18 +326,18 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             case 0:
                 AnsNum = btn_sub1.getText().toString();
                 Log.d(TAG_MESSAGE,"Answer is: "+AnsNum);
-                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer,0);
                 break;
             case 1:
                 ColorAns = btn_sub1.getCurrentTextColor();
                 Log.d(TAG_MESSAGE,"Text Color is: "+ColorAns);
-                GetAnswer(ColorAns,colorAnswer);
+                GetAnswer(ColorAns,colorAnswer,1);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_sub1.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(TAG_MESSAGE,"BG Color is: "+BGColorAns);
-                GetAnswer(BGColorAns,bgColorAnswer);
+                GetAnswer(BGColorAns,bgColorAnswer,2);
                 break;
         }
 
@@ -350,18 +348,18 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             case 0:
                 AnsNum = btn_sub2.getText().toString();
                 Log.d(TAG_MESSAGE,"Answer is: "+AnsNum);
-                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer,0);
                 break;
             case 1:
                 ColorAns = btn_sub2.getCurrentTextColor();
                 Log.d(TAG_MESSAGE,"Text Color is: "+ColorAns);
-                GetAnswer(ColorAns,colorAnswer);
+                GetAnswer(ColorAns,colorAnswer,1);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_sub2.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(TAG_MESSAGE,"BG Color is: "+BGColorAns);
-                GetAnswer(BGColorAns,bgColorAnswer);
+                GetAnswer(BGColorAns,bgColorAnswer,2);
                 break;
         }
 
@@ -372,24 +370,24 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             case 0:
                 AnsNum = btn_sub3.getText().toString();
                 Log.d(TAG_MESSAGE,"Answer is: "+AnsNum);
-                GetAnswer(Integer.valueOf(AnsNum),numAnswer);
+                GetAnswer(Integer.valueOf(AnsNum),numAnswer,0);
                 break;
             case 1:
                 ColorAns = btn_sub3.getCurrentTextColor();
                 Log.d(TAG_MESSAGE,"Text Color is: "+ColorAns);
-                GetAnswer(ColorAns,colorAnswer);
+                GetAnswer(ColorAns,colorAnswer,1);
                 break;
             case 2:
                 ColorDrawable btnColor = (ColorDrawable) btn_sub3.getBackground();
                 BGColorAns = btnColor.getColor();
                 Log.d(TAG_MESSAGE,"BG Color is: "+BGColorAns);
-                GetAnswer(BGColorAns,bgColorAnswer);
+                GetAnswer(BGColorAns,bgColorAnswer,2);
                 break;
         }
 
     }
 
-    private void GetAnswer(int ansValue,int ans){
+    private void GetAnswer(int ansValue,int ans, int category){
         Log.d(TAG_MESSAGE,"Your Choosen Answer: "+ansValue);
         Log.d(TAG_MESSAGE, "Correct Answer: "+ans);
         if (ans == ansValue){
@@ -416,13 +414,8 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
             edit.putInt(TAG_KEY,0);
             edit.apply();
             timer.cancel();
-            SlideRevealGameOver();
-            Intent gameOver = new Intent(this,GameOver.class);
-            finish();
-            StoreHighScore(score);
-            gameOver.putExtra(TAG_BUNDLE_SCORE,score);
-            gameOver.putExtra(TAG_BUNDLE_PK,2);
-            startActivity(gameOver);
+            AnimateShake(ans,category);
+            DelayActivity();
         }
     }
 
@@ -470,10 +463,11 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onBackPressed(){
         backpress_count--;
-        BackPressCounter(backpress_count);
+        int answer_array[]=new int[]{numAns,colorPos_1,bgColorPos_1};
+        BackPressCounter(backpress_count,answer_array[Questions],Questions);
     }
 
-    private void BackPressCounter(int count ){
+    private void BackPressCounter(int count, final int ans, final int category){
 
         Log.d(TAG_MESSAGE,"BACK PRESS COUNT: "+count);
 
@@ -503,7 +497,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             RevealActivity();
-                            TimerLeft(milliLeft-1000);
+                            TimerLeft(milliLeft-1000,ans,category);
                             gifDrawable.start();
 
                         }
@@ -530,7 +524,7 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         timer.cancel();
     }
 
-    private void TimerLeft(long milliLeft){
+    private void TimerLeft(long milliLeft, final int ans, final int category){
         timer = new CountDownTimer(milliLeft-1000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -544,17 +538,11 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
                 edit.putInt(TAG_KEY,0);
                 edit.apply();
                 cancel();
-                Intent gameOver = new Intent(getApplicationContext(),GameOver.class);
-                finish();
-                SlideRevealGameOver();
-                StoreHighScore(score);
-                gameOver.putExtra(TAG_BUNDLE_SCORE,score);
-                gameOver.putExtra(TAG_BUNDLE_PK,2);
-                startActivity(gameOver);
+                AnimateShake(ans,category);
+                DelayActivity();
             }
         }.start();
     }
-
 
     public void ClosingActivity(){
 
@@ -566,5 +554,100 @@ public class Subtraction extends AppCompatActivity implements View.OnClickListen
         Intent startGame = new Intent(this,StartGame.class);
         finish();
         startActivity(startGame);
+    }
+
+    private void AnimateShake(int ans, int category) {
+
+        switch (category) {
+            case 0:
+                Log.d(TAG_MESSAGE, "Correct Answer");
+                FindBtnAnswer(ans);
+                break;
+            case 1:
+                Log.d(TAG_MESSAGE, "Correct Color");
+                FindBtnColor(ans);
+                break;
+            case 2:
+                Log.d(TAG_MESSAGE, "Correct background Color");
+                FindBtnBGColor(ans);
+                break;
+        }
+    }
+
+    private void FindBtnAnswer(int ans) {
+        int answer;
+        boolean i = true;
+        Button[] btn_array = new Button[]{btn_sub1, btn_sub2, btn_sub3};
+        Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+        int index = 0;
+        do {
+            answer = Integer.valueOf(btn_array[index].getText().toString());
+            if (answer == ans) {
+                i = false;
+                btn_array[index].setAnimation(shake);
+            } else {
+                index++;
+            }
+        } while (i);
+    }
+
+    private void FindBtnColor(int ans) {
+        int answer;
+        boolean i = true;
+        Button[] btn_array = new Button[]{btn_sub1, btn_sub2, btn_sub3};
+        Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+        int index = 0;
+        do {
+            answer = btn_array[index].getCurrentTextColor();
+            if (answer == ans) {
+                i = false;
+                btn_array[index].setAnimation(shake);
+            } else {
+                index++;
+            }
+        } while (i);
+
+    }
+
+    private void FindBtnBGColor(int ans) {
+        int answer;
+        boolean i = true;
+        ColorDrawable BG_btn1 = (ColorDrawable) btn_sub1.getBackground();
+        ColorDrawable BG_btn2 = (ColorDrawable) btn_sub2.getBackground();
+        ColorDrawable BG_btn3 = (ColorDrawable) btn_sub3.getBackground();
+        ColorDrawable[] BG_btnarray = new ColorDrawable[]{BG_btn1, BG_btn2, BG_btn3};
+        Button[] btn_array = new Button[]{btn_sub1, btn_sub2, btn_sub3};
+        Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+        int index = 0;
+        do {
+            answer = BG_btnarray[index].getColor();
+            if (answer == ans) {
+                i = false;
+                btn_array[index].setAnimation(shake);
+            } else {
+                index++;
+            }
+        } while (i);
+    }
+
+    private void DelayActivity() {
+
+        for (int counter = 0;counter<=3000;counter++){
+            Log.d(TAG_MESSAGE,String.valueOf(counter));
+            if (counter==3000){
+                CallGameOver();
+            }
+        }
+
+    }
+
+    private void CallGameOver(){
+        SlideRevealGameOver();
+        Intent gameOver = new Intent(getApplicationContext(), GameOver.class);
+        finish();
+        StoreHighScore(score);
+        gameOver.putExtra(TAG_BUNDLE_SCORE, score);
+        gameOver.putExtra(TAG_BUNDLE_PK, 2);
+        startActivity(gameOver);
     }
 }

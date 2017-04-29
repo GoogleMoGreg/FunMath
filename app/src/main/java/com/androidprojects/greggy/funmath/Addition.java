@@ -3,7 +3,6 @@ package com.androidprojects.greggy.funmath;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.os.HandlerThread;
 import android.view.Gravity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,9 +24,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -164,18 +160,17 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
             public void onFinish() {
 
                 Log.d(DEBUG_MESSAGE, "TIMES UP!");
+                Log.d(DEBUG_MESSAGE,"Category in Timer: "+Question);
+                int answer_array[]=new int[]{numAns,colorPos_1,bgColorPos_1};
+                Log.d(DEBUG_MESSAGE,"Timer answer is:"+answer_array[Question]);
                 SharedPreferences pref_score = getApplicationContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                 SharedPreferences.Editor edit = pref_score.edit();
                 edit.putInt(TAG_KEY, 0);
                 edit.apply();
                 cancel();
-                Intent gameOver = new Intent(getApplicationContext(), GameOver.class);
-                finish();
-                SlideRevealGameOver();
-                StoreHighScore(score);
-                gameOver.putExtra(TAG_BUNDLE_SCORE, score);
-                gameOver.putExtra(TAG_BUNDLE_PK, 1);
-                startActivity(gameOver);
+                AnimateShake(answer_array[Question],Question);
+                DelayActivity();
+
             }
         }.start();
     }
@@ -324,15 +319,9 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
             edit.putInt(TAG_KEY, 0);
             edit.apply();
             timer.cancel();
-            AnimateShake(ans, category);
+            AnimateShake(ans,category);
             DelayActivity();
-            SlideRevealGameOver();
-            Intent gameOver = new Intent(this, GameOver.class);
-            finish();
-            StoreHighScore(score);
-            gameOver.putExtra(TAG_BUNDLE_SCORE, score);
-            gameOver.putExtra(TAG_BUNDLE_PK, 1);
-            startActivity(gameOver);
+
         }
     }
 
@@ -563,10 +552,13 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onBackPressed() {
         backpress_count--;
-        BackPressCounter(backpress_count);
+        Log.d(DEBUG_MESSAGE,"Backpress Category:"+Question);
+        int answer_array[]=new int[]{numAns,colorPos_1,bgColorPos_1};
+        Log.d(DEBUG_MESSAGE,"Backpress Correct Answer:"+answer_array[Question]);
+        BackPressCounter(backpress_count,answer_array[Question],Question);
     }
 
-    private void BackPressCounter(int count) {
+    private void BackPressCounter(int count, final int ans, final int category) {
 
         Log.d(DEBUG_MESSAGE, "BACK PRESS COUNT: " + count);
 
@@ -594,7 +586,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             RevealActivity();
-                            TimerLeft(milliLeft - 1000);
+                            TimerLeft(milliLeft - 1000,ans,category);
                             gifDrawable.start();
                         }
                     });
@@ -608,7 +600,7 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
         timer.cancel();
     }
 
-    private void TimerLeft(long milliLeft) {
+    private void TimerLeft(long milliLeft, final int ans, final int category) {
         timer = new CountDownTimer(milliLeft, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -623,13 +615,8 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
                 edit.putInt(TAG_KEY, 0);
                 edit.apply();
                 cancel();
-                Intent gameOver = new Intent(getApplicationContext(), GameOver.class);
-                finish();
-                SlideRevealGameOver();
-                StoreHighScore(score);
-                gameOver.putExtra(TAG_BUNDLE_SCORE, score);
-                gameOver.putExtra(TAG_BUNDLE_PK, 1);
-                startActivity(gameOver);
+                AnimateShake(ans,category);
+                DelayActivity();
             }
         }.start();
     }
@@ -734,17 +721,24 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
 
     private void DelayActivity() {
 
-        CountDownTimer delaytimer = new CountDownTimer(5000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                    Log.d(DEBUG_MESSAGE,"delaytimer: "+millisUntilFinished);
+        for (int counter = 0;counter<=20000;counter++){
+            Log.d(DEBUG_MESSAGE,String.valueOf(counter));
+            if (counter==3000){
+                CallGameOver();
             }
-
-            @Override
-            public void onFinish() {
-
-            }
-        }.start();
+        }
 
     }
+
+    private void CallGameOver(){
+        SlideRevealGameOver();
+        Intent gameOver = new Intent(getApplicationContext(), GameOver.class);
+        finish();
+        StoreHighScore(score);
+        gameOver.putExtra(TAG_BUNDLE_SCORE, score);
+        gameOver.putExtra(TAG_BUNDLE_PK, 1);
+        startActivity(gameOver);
+    }
+
+
 }

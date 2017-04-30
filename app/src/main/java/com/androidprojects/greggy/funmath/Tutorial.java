@@ -3,6 +3,7 @@ package com.androidprojects.greggy.funmath;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
@@ -50,7 +51,7 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 
         tv_FUN=(TextView)findViewById(R.id.tv_tutFUN);
         tv_MATH=(TextView)findViewById(R.id.tv_tutMATH);
@@ -256,9 +257,12 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
 
         materialShowcaseSequence.setConfig(config);
 
+
         materialShowcaseSequence.addSequenceItem(
           new MaterialShowcaseView.Builder(this)
                 .setTarget(gif_timer)
+                .setTargetTouchable(true)
+                .setDismissOnTouch(true)
                 .setDismissText("GOT IT")
                 .setContentText("This is the timer, when it ends GAME OVER but for now just a display.")
                 .setDismissOnTargetTouch(true)
@@ -269,6 +273,8 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
         materialShowcaseSequence.addSequenceItem(
                 new MaterialShowcaseView.Builder(this)
                 .setTarget(imgbtn_score)
+                .setTargetTouchable(true)
+                .setDismissOnTouch(true)
                 .setDismissText("GOT IT")
                 .setDismissOnTargetTouch(true)
                 .setContentText("This is your score...")
@@ -280,6 +286,8 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
         materialShowcaseSequence.addSequenceItem(
                 new MaterialShowcaseView.Builder(this)
                 .setTarget(tv_question)
+                .setTargetTouchable(true)
+                .setDismissOnTouch(true)
                 .setDismissText("GOT IT")
                 .setContentText("Pay attention to the indicated questions. Sometimes they can be tricky.")
                 .withRectangleShape(true)
@@ -338,4 +346,6 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
         btn_thirdnum.startAnimation(animation);
 
     }
+
+
 }

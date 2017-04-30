@@ -9,12 +9,15 @@
 
     <LinearLayout
         android:id="@+id/lLayout_addHeader"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
         android:background="@color/DARKTEAL"
-        >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/rLayout_addgame"
+        android:layout_toStartOf="@+id/rLayout_addgame">
 
         <TextView
             android:id="@+id/tv_addFUN"
@@ -40,16 +43,18 @@
             android:textSize="@dimen/in_game_activity_txtsize_MATH"
             android:textColor="@color/WHITE"
             android:gravity="center"
+            android:layout_marginBottom="@dimen/in_game_activity_marginbottom_MATH"
             />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rLayout_addgame"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lLayout_addHeader"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignLeft="@+id/btn_SecondNum"
+        android:layout_alignStart="@+id/btn_SecondNum"
+        android:layout_above="@+id/tv_addNumQuestion"
+        >
 
 
         <ImageView
@@ -57,8 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/in_game_activity_height_border"
             android:background="@color/TEAL"
-            />
-
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <TextView
             android:id="@+id/tv_addsecremaining"
             android:layout_width="wrap_content"
@@ -70,6 +76,8 @@
             android:layout_toRightOf="@+id/iv_addtimer"
             android:layout_toEndOf="@+id/iv_addtimer"
             android:layout_marginLeft="@dimen/in_game_activity_marginleft_secremaining"
+            android:layout_marginBottom="@dimen/in_game_activity_marginbottom_secremaining"
+            android:layout_marginTop="@dimen/in_game_activity_margintop_secremaining"
             />
         <ImageView
             android:id="@+id/iv_borderaddscore"
@@ -96,19 +104,7 @@
             android:background="@color/TEAL"
             android:layout_below="@+id/tv_addscoredpoints"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:id="@+id/btn_addscore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_score"
-            android:layout_below="@+id/tv_addsecremaining"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:text="00"
-            android:textColor="@color/BLACK"
-            android:textSize="@dimen/in_game_activity_txtsize_score"
+            android:layout_alignParentStart="true"
             />
 
         <TextView
@@ -122,10 +118,20 @@
             android:layout_alignLeft="@+id/iv_addtimer"
             android:layout_alignStart="@+id/iv_addtimer"
             android:layout_marginTop="@dimen/in_game_activity_margintop_scoredpoints"
+            android:layout_marginBottom="@dimen/in_game_activity_marginbottom_scoredpoints"
             />
-
-
     </RelativeLayout>
+    <Button
+        android:id="@+id/btn_addscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_score"
+        android:text="00"
+        android:layout_marginTop="@dimen/in_game_activity_margintop_score"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/in_game_activity_txtsize_score"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/tv_addNumQuestion"
@@ -134,9 +140,10 @@
         android:text="2 + 2 = ? "
         android:textSize="@dimen/in_game_activity_txtsize_questionNum"
         android:gravity="center"
-        android:layout_below="@+id/rLayout_addgame"
         android:textColor="@color/BLACK"
-        />
+        android:layout_below="@+id/lLayout_addHeader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/tv_addQuestion"
@@ -147,7 +154,6 @@
         android:layout_below="@+id/tv_addNumQuestion"
         android:textColor="@color/BLACK"
         android:layout_marginLeft="@dimen/in_game_activity_marginleft_question"
-        android:layout_marginTop="@dimen/in_game_activity_margintop_question"
         />
     <TextView
         android:id="@+id/tv_addQuestion_1"
@@ -158,7 +164,6 @@
         android:layout_below="@+id/tv_addNumQuestion"
         android:layout_toRightOf="@id/tv_addQuestion"
         android:textColor="@color/BLACK"
-        android:layout_marginTop="@dimen/in_game_activity_margintop_question"
         />
 
     <TextView
@@ -167,11 +172,11 @@
         android:layout_height="wrap_content"
         android:text=" blah"
         android:textSize="@dimen/in_game_activity_txtsize_question"
-        android:layout_below="@+id/tv_addNumQuestion"
-        android:layout_toRightOf="@id/tv_addQuestion_1"
         android:textColor="@color/BLACK"
-        android:layout_marginTop="@dimen/in_game_activity_margintop_question"
-        />
+        android:layout_alignBaseline="@+id/tv_addQuestion_1"
+        android:layout_alignBottom="@+id/tv_addQuestion_1"
+        android:layout_toRightOf="@+id/tv_addQuestion_1"
+        android:layout_toEndOf="@+id/tv_addQuestion_1" />
 
     <Button
         android:id="@+id/btn_FirstNum"

@@ -57,6 +57,8 @@ public class GameOver extends AppCompatActivity implements View.OnClickListener 
         tv_playagain.setTypeface(font);
         btn_y.setTypeface(font);
         btn_n.setTypeface(font);
+        btn_scoreis.setTypeface(font);
+        btn_highscore.setTypeface(font);
 
 
 

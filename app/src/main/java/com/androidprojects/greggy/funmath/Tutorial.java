@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,8 @@ import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class Tutorial extends AppCompatActivity implements View.OnClickListener{
 
-    TextView tv_FUN,tv_MATH,tv_questionNum,tv_question,tv_question1,tv_question2;
+    TextView tv_FUN,tv_MATH,tv_questionNum,tv_question,tv_question1,tv_question2,
+                tv_scoredpoints,tv_secremaining;
     Button btn_firstnum,btn_secondnum,btn_thirdnum,imgbtn_score;
     GifImageView gif_timer;
 
@@ -43,6 +45,7 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
     int demonum,score;
 
     String SHOWCASE_ID= "sequence showcase";
+    Typeface font;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,8 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
         tv_question1=(TextView)findViewById(R.id.tv_tutQuestion_1);
         tv_question2=(TextView)findViewById(R.id.tv_tutQuestion_2);
         imgbtn_score=(Button)findViewById(R.id.btn_tutscore);
+        tv_scoredpoints=(TextView)findViewById(R.id.tv_tutscoredpoints);
+        tv_secremaining=(TextView)findViewById(R.id.tv_tutsecremaining);
         gif_timer=(GifImageView)findViewById(R.id.iv_tuttimer);
 
         btn_firstnum=(Button)findViewById(R.id.btn_tutFirstNum);
@@ -64,6 +69,19 @@ public class Tutorial extends AppCompatActivity implements View.OnClickListener{
         btn_secondnum.setOnClickListener(this);
         btn_thirdnum=(Button)findViewById(R.id.btn_tutThirdNum);
         btn_thirdnum.setOnClickListener(this);
+        font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
+        tv_FUN.setTypeface(font);
+        tv_MATH.setTypeface(font);
+        tv_questionNum.setTypeface(font);
+        tv_question.setTypeface(font);
+        tv_question2.setTypeface(font);
+        imgbtn_score.setTypeface(font);
+        tv_scoredpoints.setTypeface(font);
+        tv_secremaining.setTypeface(font);
+        btn_firstnum.setTypeface(font);
+        btn_secondnum.setTypeface(font);
+        btn_thirdnum.setTypeface(font);
+
 
         ShowCaseDemo();
 

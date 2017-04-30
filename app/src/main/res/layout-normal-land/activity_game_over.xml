@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/lLayout_gameoverHeader"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_GAME"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/gameover_activity_layoutheight_GAME"
             android:textSize="@dimen/gameover_activity_txtsize_GAME"
             android:text="@string/GAMEOVER_GAME"
             android:textColor="@color/WHITE"
@@ -26,22 +26,24 @@
             />
         <TextView
             android:id="@+id/tv_OVER"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/gameover_activity_layoutwidth_OVER"
+            android:layout_height="@dimen/gameover_activity_layoutheight_OVER"
             android:text="@string/GAMEOVER_OVER"
             android:textColor="@color/WHITE"
             android:textSize="@dimen/gameover_activity_txtsize_OVER"
             android:gravity="center"
+            android:layout_marginBottom="4dp"
+
             />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rLayout_gameover"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lLayout_gameoverHeader"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/lLayout_gameoverHeader"
+        android:layout_toEndOf="@+id/lLayout_gameoverHeader">
 
         <ImageView
             android:id="@+id/iv_bordergameoverscore"
@@ -124,20 +126,23 @@
         android:text="m u l t i p l i c a t i o n"
         android:textSize="@dimen/gameover_activity_txtsize_category"
         android:gravity="center"
-        android:layout_below="@+id/rLayout_gameover"
         android:textColor="@color/BLACK"
-        />
+        android:layout_alignBottom="@+id/rLayout_gameover"
+        android:layout_alignLeft="@+id/rLayout_gameover"
+        android:layout_alignStart="@+id/rLayout_gameover" />
 
     <TextView
         android:id="@+id/tv_playagain"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/GAMEOVER_PLAYAGAIN"
         android:textSize="@dimen/gameover_activity_txtsize_playagain"
-        android:gravity="center"
-        android:layout_below="@+id/tv_gamecategory"
         android:textColor="@color/BLACK"
-        android:layout_marginTop="@dimen/gameover_activity_margintop_playagain"
+        android:layout_alignBaseline="@+id/tv_gamecategory"
+        android:layout_alignBottom="@+id/tv_gamecategory"
+        android:layout_toLeftOf="@+id/rLayout_gameover"
+        android:layout_toStartOf="@+id/rLayout_gameover"
+        android:layout_marginLeft="@dimen/gameover_activity_margintop_playagain"
         />
     <Button
         android:id="@+id/btn_tryagain_y"
@@ -146,10 +151,16 @@
         android:text="@string/GAMEOVER_BTNYES"
         android:textSize="@dimen/gameover_activity_txtsize_tryagain"
         android:textAllCaps="false"
-        android:layout_below="@id/tv_playagain"
         android:drawableRight="@drawable/ic_yes"
         android:background="@color/WHITE"
+        style="?android:borderlessButtonStyle"
+        android:layout_alignBaseline="@+id/btn_tryagain_n"
+        android:layout_alignBottom="@+id/btn_tryagain_n"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainY"
+        android:layout_marginStart="@dimen/gameover_activity_marginstart_tryagainY"
+        android:layout_marginTop="@dimen/gameover_activity_margintop_tryagainY"
         />
     <Button
         android:id="@+id/btn_tryagain_n"
@@ -158,12 +169,16 @@
         android:text="@string/GAMEOVER_BTNNO"
         android:textAllCaps="false"
         android:textSize="@dimen/gameover_activity_txtsize_tryagain"
-        android:layout_toRightOf="@id/btn_tryagain_y"
-        android:layout_below="@+id/tv_playagain"
         android:drawableRight="@drawable/ic_no"
         android:background="@color/WHITE"
         android:paddingLeft="@dimen/gameover_activity_paddingleft_tryagainN"
         android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainN"
+        style="?android:borderlessButtonStyle"
+        android:layout_marginStart="@dimen/gameover_activity_paddingstart_tryagainN"
+        android:layout_below="@+id/rLayout_gameover"
+        android:layout_toRightOf="@+id/btn_tryagain_y"
+        android:layout_toEndOf="@+id/btn_tryagain_y"
+        android:layout_marginTop="@dimen/gameover_activity_paddingtop_tryagainN"
         />
 
 </RelativeLayout>

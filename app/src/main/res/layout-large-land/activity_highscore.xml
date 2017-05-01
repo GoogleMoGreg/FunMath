@@ -4,16 +4,17 @@
     android:id="@+id/activity_highscore"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/global_activity_marginleft"
+    android:layout_marginRight="@dimen/global_activity_marginright"
     tools:context="com.androidprojects.greggy.funmath.Highscore">
 
     <LinearLayout
         android:id="@+id/lLayout_headerHighscore"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:background="@color/DARKTEAL"
-
         >
 
         <TextView
@@ -35,21 +36,15 @@
             android:textSize="@dimen/bestscore_activity_txtsize_header"
             android:textColor="@color/WHITE"
             android:layout_marginBottom="@dimen/bestscore_activity_marginbottom_score"
-            android:layout_marginLeft="@dimen/bestscore_activity_marginleft_score"
-            android:layout_marginRight="@dimen/bestscore_activity_marginright_score"
             />
 
     </LinearLayout>
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/lLayout_headerHighscore"
-        >
     <RelativeLayout
         android:id="@+id/rLayout_highscores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lLayout_headerHighscore"
+        >
 
         <ImageView
             android:id="@+id/iv_borderHSadd"
@@ -156,8 +151,6 @@
             android:textSize="@dimen/bestscore_activity_txtsize_imgbtnhs"
             />
     </RelativeLayout>
-    </ScrollView>
-
 
 
 </RelativeLayout>

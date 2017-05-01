@@ -1,0 +1,114 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="global_activity_marginright">100dp</dimen>
+    <dimen name="global_activity_marginleft">100dp</dimen>
+    <dimen name="global_activity_marginbottom">250dp</dimen>
+
+    <dimen name="main_activity_headertxtsize_FUN">100sp</dimen>
+    <dimen name="main_activity_headermargin_top">10dp</dimen>
+    <dimen name="main_activity_headermargin_bottom">30dp</dimen>
+    <dimen name="main_activity_header_LINE_width">290dp</dimen>
+    <dimen name="main_activity_header_LINE_height">5dp</dimen>
+    <dimen name="main_activity_headermarginIC_bottom">270dp</dimen>
+    <dimen name="main_activity_headermarginIC_right">10dp</dimen>
+
+    <dimen name="main_activity_btnbackground_height">35dp</dimen>
+    <dimen name="main_activity_btntxt_size">24sp</dimen>
+    <dimen name="main_activity_btnmargin_right">50dp</dimen>
+    <dimen name="main_activity_btnmargin_left">50dp</dimen>
+    <dimen name="main_activity_btnmargin_top">50dp</dimen>
+
+    <dimen name="startgame_activity_headermargin_bottom">15dp</dimen>
+    <dimen name="startgame_activity_headertxt_size">100sp</dimen>
+    <dimen name="startgame_activity_headerline_width">290dp</dimen>
+
+    <dimen name="startgame_activity_btntxt_size">30sp</dimen>
+    <dimen name="startgame_activity_border_height">50dp</dimen>
+    <dimen name="startgame_activity_logoadd_marginbottom">23dp</dimen>
+    <dimen name="startgame_activity_btnadd_width">170dp</dimen>
+    <dimen name="startgame_activity_btnadd_marginleft">180dp</dimen>
+    <dimen name="startgame_activity_logoadd_margintop">26dp</dimen>
+    <dimen name="startgame_activity_bordermul_margintop">200dp</dimen>
+    <dimen name="startgame_activity_logosub_marginleft">110dp</dimen>
+    <dimen name="startgame_activity_logosub_margintop">14dp</dimen>
+    <dimen name="startgame_activity_btnsub_width">170dp</dimen>
+    <dimen name="startgame_activity_btnsub_marginleft">10dp</dimen>
+    <dimen name="startgame_activity_btnmul_width">200dp</dimen>
+    <dimen name="startgame_activity_btnmul_marginleft">80dp</dimen>
+    <dimen name="startgame_activity_borderend_margintop">300dp</dimen>
+    <dimen name="startgame_activity_logomul_marginright">100dp</dimen>
+    <dimen name="startgame_activity_logomul_margintop">14dp</dimen>
+
+    <dimen name="in_game_activity_txtsize_FUN">60sp</dimen>
+    <dimen name="in_game_activity_txtsize_MATH">60sp</dimen>
+    <dimen name="in_game_activity_width_line">170dp</dimen>
+    <dimen name="in_game_activity_height_border">30dp</dimen>
+    <dimen name="in_game_activity_txtsize_bordertxt">24sp</dimen>
+    <dimen name="in_game_activity_marginleft_secremaining">20dp</dimen>
+    <dimen name="in_game_activity_marginleft_timer">60dp</dimen>
+    <dimen name="in_game_activity_txtsize_score">30sp</dimen>
+    <dimen name="in_game_activity_marginright_score">70dp</dimen>
+    <dimen name="in_game_activity_margintop_scoredpoints">10dp</dimen>
+    <dimen name="in_game_activity_marginleft_scoredpoints">60dp</dimen>
+    <dimen name="in_game_activity_txtsize_questionNum">45sp</dimen>
+    <dimen name="in_game_activity_margintop_questionNum">30dp</dimen>
+    <dimen name="in_game_activity_txtsize_question">24sp</dimen>
+    <dimen name="in_game_activity_marginleft_question">10dp</dimen>
+    <dimen name="in_game_activity_margintop_question">30dp</dimen>
+    <dimen name="in_game_activity_width_Num">100dp</dimen>
+    <dimen name="in_game_activity_height_Num">100dp</dimen>
+    <dimen name="in_game_activity_txtsize_Num">50sp</dimen>
+    <dimen name="in_game_activity_marginLeft_Num">100dp</dimen>
+    <dimen name="in_game_activity_margintop_Num">15dp</dimen>
+    <dimen name="in_game_activity_marginleft_Num2">20dp</dimen>
+    <dimen name="in_game_activity_marginleft_Num3">20dp</dimen>
+
+    <dimen name="gameover_activity_txtsize_GAME">60sp</dimen>
+    <dimen name="gameover_activity_txtsize_OVER">60sp</dimen>
+    <dimen name="gameover_activity_height_border">30dp</dimen>
+    <dimen name="gameover_activity_txtsize_scoredpoints">24sp</dimen>
+    <dimen name="gameover_activity_marginleft_scoredpoints">90dp</dimen>
+    <dimen name="gameover_activity_margintop_scoredpoints">5dp</dimen>
+    <dimen name="gameover_activity_marginbottom_scoredpoints">10dp</dimen>
+    <dimen name="gameover_activity_txtsize_imgscore">30sp</dimen>
+    <dimen name="gameover_activity_marginright_imgscore">90dp</dimen>
+    <dimen name="gameover_activity_txtsize_bestscore">24sp</dimen>
+    <dimen name="gameover_activity_margintop_bestscore">15dp</dimen>
+    <dimen name="gameover_activity_marginleft_bestscore">5dp</dimen>
+    <dimen name="gameover_activity_margintop_endborder">30dp</dimen>
+    <dimen name="gameover_activity_marginbottom_bestscore">30dp</dimen>
+    <dimen name="gameover_activity_txtsize_category">30sp</dimen>
+    <dimen name="gameover_activity_margintop_category">30dp</dimen>
+    <dimen name="gameover_activity_txtsize_playagain">40sp</dimen>
+    <dimen name="gameover_activity_margintop_playagain">20dp</dimen>
+    <dimen name="gameover_activity_txtsize_tryagain">20sp</dimen>
+    <dimen name="gameover_activity_marginleft_tryagainY">150dp</dimen>
+    <dimen name="gameover_activity_margintop_tryagainY">20dp</dimen>
+    <dimen name="gameover_activity_paddingleft_tryagainN">15dp</dimen>
+    <dimen name="gameover_activity_marginleft_tryagainN">70dp</dimen>
+
+    <dimen name="bestscore_activity_txtsize_header">60sp</dimen>
+    <dimen name="bestscore_activity_margintop_best">10dp</dimen>
+    <dimen name="bestscore_activity_marginbottom_score">10dp</dimen>
+    <dimen name="bestscore_activity_height_border">50dp</dimen>
+    <dimen name="bestscore_activity_txtsize_hs">24sp</dimen>
+    <dimen name="bestscore_activity_marginleft_hsadd">130dp</dimen>
+    <dimen name="bestscore_activity_margintop_hsadd">10dp</dimen>
+    <dimen name="bestscore_activity_marginbottom_hsadd">10dp</dimen>
+    <dimen name="bestscore_activity_txtsize_imgbtnhs">20sp</dimen>
+    <dimen name="bestscore_activity_marginright_imgbtnhs">100dp</dimen>
+    <dimen name="bestscore_activity_margintop_imgbtnhsadd">35dp</dimen>
+    <dimen name="bestscore_activity_paddingbottom_imgbtnhs">20dp</dimen>
+    <dimen name="bestscore_activity_margintop_hssub">10dp</dimen>
+    <dimen name="bestscore_activity_marginleft_hssub">120dp</dimen>
+    <dimen name="bestscore_activity_margintop_hsmul">10dp</dimen>
+    <dimen name="bestscore_activity_margintop_imgbtnhssub">25dp</dimen>
+    <dimen name="bestscore_activity_marginbottom_hsmul">5dp</dimen>
+    <dimen name="bestscore_activity_marginleft_hsmul">110dp</dimen>
+    <dimen name="bestscore_activity_margintop_imgbtnhsmul">15dp</dimen>
+    <dimen name="bestscore_activity_marginright_imgbtnhsmul">100dp</dimen>
+
+
+</resources>

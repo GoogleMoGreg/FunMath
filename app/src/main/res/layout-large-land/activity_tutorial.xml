@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WHITE"
+    tools:context="com.androidprojects.greggy.funmath.Tutorial">
+
+
+    <LinearLayout
+        android:id="@+id/lLayout_tutHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/DARKTEAL"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/rLayout_tutgame"
+        android:layout_toStartOf="@+id/rLayout_tutgame">
+
+        <TextView
+            android:id="@+id/tv_tutFUN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/HEADER_NAME_FUN"
+            android:textSize="@dimen/in_game_activity_txtsize_FUN"
+            android:textColor="@color/WHITE"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/iv_MainHeader_LINE"
+            android:layout_width="@dimen/startgame_activity_headerline_width"
+            android:layout_height="@dimen/main_activity_header_LINE_height"
+            android:background="@color/WHITE"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_tutMATH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/HEADER_NAME_MATH"
+            android:textSize="@dimen/in_game_activity_txtsize_MATH"
+            android:textColor="@color/WHITE"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/in_game_activity_marginbottom_MATH"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLayout_tutgame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_tutSecondNum"
+        android:layout_alignStart="@+id/btn_tutSecondNum"
+        android:layout_above="@+id/tv_tutNumQuestion"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv_bordertuttimer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/in_game_activity_height_border"
+            android:background="@color/TEAL"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/tv_tutsecremaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/INGAME_SECREMAINING"
+            android:textSize="@dimen/in_game_activity_txtsize_bordertxt"
+            android:textColor="@color/BLACK"
+            android:layout_below="@+id/iv_bordertuttimer"
+            android:layout_toRightOf="@+id/iv_tuttimer"
+            android:layout_toEndOf="@+id/iv_tuttimer"
+            android:layout_marginLeft="@dimen/in_game_activity_marginleft_secremaining"
+            android:layout_marginBottom="@dimen/in_game_activity_marginbottom_secremaining"
+            android:layout_marginTop="@dimen/in_game_activity_margintop_secremaining"
+            />
+        <ImageView
+            android:id="@+id/iv_bordertutscore"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/in_game_activity_height_border"
+            android:background="@color/TEAL"
+            android:layout_below="@+id/tv_tutsecremaining"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/iv_tuttimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/timer"
+            android:layout_marginLeft="@dimen/in_game_activity_marginleft_timer"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <ImageView
+            android:id="@+id/iv_endbordertutscore"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/in_game_activity_height_border"
+            android:background="@color/TEAL"
+            android:layout_below="@+id/tv_tutscoredpoints"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_tutscoredpoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/INGAME_SCOREDPOINTS"
+            android:textSize="@dimen/in_game_activity_txtsize_bordertxt"
+            android:textColor="@color/BLACK"
+            android:layout_below="@+id/iv_bordertutscore"
+            android:layout_alignLeft="@+id/iv_tuttimer"
+            android:layout_alignStart="@+id/iv_tuttimer"
+            android:layout_marginTop="@dimen/in_game_activity_margintop_scoredpoints"
+            android:layout_marginBottom="@dimen/in_game_activity_marginbottom_scoredpoints"
+            />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_tutscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_score"
+        android:text="00"
+        android:layout_marginTop="@dimen/in_game_activity_margintop_score"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/in_game_activity_txtsize_score"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tv_tutNumQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2 + 2 = ? "
+        android:textSize="@dimen/in_game_activity_txtsize_questionNum"
+        android:gravity="center"
+        android:textColor="@color/BLACK"
+        android:layout_below="@+id/lLayout_tutHeader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_tutQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick the right answer "
+        android:textSize="@dimen/in_game_activity_txtsize_question"
+        android:layout_below="@+id/tv_tutNumQuestion"
+        android:textColor="@color/BLACK"
+        android:layout_marginLeft="@dimen/in_game_activity_marginleft_question"
+        />
+    <TextView
+        android:id="@+id/tv_tutQuestion_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="blah"
+        android:textSize="@dimen/in_game_activity_txtsize_question"
+        android:layout_below="@+id/tv_tutNumQuestion"
+        android:layout_toRightOf="@id/tv_tutQuestion"
+        android:textColor="@color/BLACK"
+        />
+
+    <TextView
+        android:id="@+id/tv_tutQuestion_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" blah"
+        android:textSize="@dimen/in_game_activity_txtsize_question"
+        android:textColor="@color/BLACK"
+        android:layout_alignBaseline="@+id/tv_tutQuestion_1"
+        android:layout_alignBottom="@+id/tv_tutQuestion_1"
+        android:layout_toRightOf="@+id/tv_tutQuestion_1"
+        android:layout_toEndOf="@+id/tv_tutQuestion_1" />
+
+    <Button
+        android:id="@+id/btn_tutFirstNum"
+        android:layout_width="@dimen/in_game_activity_width_Num"
+        android:layout_height="@dimen/in_game_activity_height_Num"
+        android:text="2"
+        android:textSize="@dimen/in_game_activity_txtsize_Num"
+        android:layout_below="@+id/tv_tutQuestion"
+        android:layout_marginLeft="@dimen/in_game_activity_marginLeft_Num"
+        android:layout_marginTop="@dimen/in_game_activity_margintop_Num"
+
+        />
+    <Button
+        android:id="@+id/btn_tutSecondNum"
+        android:layout_width="@dimen/in_game_activity_width_Num"
+        android:layout_height="@dimen/in_game_activity_height_Num"
+        android:text="2"
+        android:textSize="@dimen/in_game_activity_txtsize_Num"
+        android:layout_below="@+id/tv_tutQuestion"
+        android:layout_toRightOf="@+id/btn_tutFirstNum"
+        android:layout_marginLeft="@dimen/in_game_activity_marginleft_Num2"
+        android:layout_marginTop="@dimen/in_game_activity_margintop_Num"
+        />
+    <Button
+        android:id="@+id/btn_tutThirdNum"
+        android:layout_width="@dimen/in_game_activity_width_Num"
+        android:layout_height="@dimen/in_game_activity_height_Num"
+        android:text="2"
+        android:textSize="@dimen/in_game_activity_txtsize_Num"
+        android:layout_below="@+id/tv_tutQuestion"
+        android:layout_toRightOf="@id/btn_tutSecondNum"
+        android:layout_marginLeft="@dimen/in_game_activity_marginleft_Num3"
+        android:layout_marginTop="@dimen/in_game_activity_margintop_Num"
+        />
+</RelativeLayout>

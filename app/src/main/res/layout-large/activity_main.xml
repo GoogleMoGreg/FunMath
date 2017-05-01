@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/WHITE"
+    android:layout_marginLeft="@dimen/global_activity_marginleft"
+    android:layout_marginRight="@dimen/global_activity_marginright"
+    android:layout_marginBottom="@dimen/global_activity_marginbottom"
+    tools:context="com.androidprojects.greggy.funmath.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/rLayout_Mainheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/lLayout_MainHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/DARKTEAL"
+        >
+
+        <TextView
+            android:id="@+id/tv_MainHeader_FUN"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/HEADER_NAME_FUN"
+            android:textSize="@dimen/main_activity_headertxtsize_FUN"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/main_activity_headermargin_top"
+            android:textColor="@color/WHITE"
+            />
+
+        <ImageView
+            android:id="@+id/iv_MainHeader_LINE"
+            android:layout_width="@dimen/main_activity_header_LINE_width"
+            android:layout_height="@dimen/main_activity_header_LINE_height"
+            android:background="@color/WHITE"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_MainHeader_MATH"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/HEADER_NAME_MATH"
+            android:textSize="@dimen/main_activity_headertxtsize_FUN"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/main_activity_headermargin_bottom"
+            android:textColor="@color/WHITE"
+            />
+    </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+       <LinearLayout
+           android:id="@+id/lLayout_icheader"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:layout_below="@+id/lLayout_MainHeader"
+           android:layout_marginTop="@dimen/main_activity_headermarginIC_bottom"
+
+           >
+           <ImageView
+               android:id="@+id/ic_subHeader"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/icsub_header"
+               android:layout_marginRight="@dimen/main_activity_headermarginIC_right"
+               />
+           <ImageView
+               android:id="@+id/ic_addHeader"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/icadd_header"
+               android:layout_marginRight="@dimen/main_activity_headermarginIC_right"
+               />
+           <ImageView
+               android:id="@+id/ic_mulHeader"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/icmul_header"
+               android:layout_marginRight="@dimen/main_activity_headermarginIC_right"
+               />
+
+       </LinearLayout>
+
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_startgame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MAIN_BTN_STARTGAME"
+        android:textColor="@color/WHITE"
+        android:textSize="@dimen/main_activity_btntxt_size"
+        android:textAllCaps="false"
+        android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+        android:layout_marginRight="@dimen/main_activity_btnmargin_right"
+        android:background="@drawable/roundbtn"
+        android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        style="?android:borderlessButtonStyle"
+        />
+
+    <Button
+        android:id="@+id/btn_highscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MAIN_BTN_BESTSCORE"
+        android:textSize="@dimen/main_activity_btntxt_size"
+        android:textColor="@color/WHITE"
+        android:textAllCaps="false"
+        android:layout_marginRight="@dimen/main_activity_btnmargin_right"
+        android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+        android:background="@drawable/roundbtn"
+        android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        style="?android:borderlessButtonStyle"
+
+        />
+
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MAIN_BTN_TUTORIAL"
+        android:textColor="@color/WHITE"
+        android:textAllCaps="false"
+        android:textSize="@dimen/main_activity_btntxt_size"
+        android:layout_marginRight="@dimen/main_activity_btnmargin_right"
+        android:layout_marginLeft="@dimen/main_activity_btnmargin_left"
+        android:background="@drawable/roundbtn"
+        android:layout_marginTop="@dimen/main_activity_btnmargin_top"
+        style="?android:borderlessButtonStyle"
+        />
+
+
+
+
+</LinearLayout>

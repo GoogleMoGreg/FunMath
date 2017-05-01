@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/TEAL"
+    android:layout_marginRight="@dimen/global_activity_marginleft"
+    android:layout_marginLeft="@dimen/global_activity_marginleft"
+    android:layout_marginBottom="@dimen/global_activity_marginbottom"
+    tools:context="com.androidprojects.greggy.funmath.StartGame">
+
+    <LinearLayout
+        android:id="@+id/lLayout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/DARKTEAL"
+        >
+
+        <TextView
+            android:id="@+id/tv_startgame_FUN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/HEADER_NAME_FUN"
+            android:textSize="@dimen/startgame_activity_headertxt_size"
+            android:textColor="@color/WHITE"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/main_activity_headermargin_top"
+            />
+        <ImageView
+            android:id="@+id/iv_MainHeader_LINE"
+            android:layout_width="@dimen/startgame_activity_headerline_width"
+            android:layout_height="@dimen/main_activity_header_LINE_height"
+            android:background="@color/WHITE"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_startgame_MATH"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/HEADER_NAME_MATH"
+            android:textSize="@dimen/startgame_activity_headertxt_size"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/startgame_activity_headermargin_bottom"
+            android:textColor="@color/WHITE"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rLayout_startgamebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ic_logoadd"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/startgame_activity_logoadd_marginbottom"
+        android:background="@color/WHITE"
+        >
+
+        <ImageView
+            android:id="@+id/iv_borderaddbtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/startgame_activity_border_height"
+            android:background="@color/TEAL"
+            />
+
+        <Button
+            android:id="@+id/btn_addition"
+            android:layout_width="@dimen/startgame_activity_btnadd_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_borderaddbtn"
+            android:layout_marginLeft="@dimen/startgame_activity_btnadd_marginleft"
+            android:background="@color/WHITE"
+            android:text="@string/STARTGAME_BTN_ADD"
+            android:textAllCaps="false"
+            android:textColor="@color/BLACK"
+            android:textSize="@dimen/startgame_activity_btntxt_size"
+            style="?android:borderlessButtonStyle"
+            />
+
+        <ImageView
+            android:id="@+id/iv_bordersubbtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/startgame_activity_border_height"
+            android:layout_below="@id/btn_addition"
+            android:background="@color/TEAL"
+            />
+
+        <ImageView
+            android:id="@+id/ic_logoadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/startgame_activity_logoadd_margintop"
+            android:layout_toEndOf="@+id/btn_addition"
+            android:layout_toRightOf="@+id/btn_addition"
+            android:src="@drawable/addition_btn" />
+
+
+        <ImageView
+            android:id="@+id/iv_bordermulbtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/startgame_activity_border_height"
+            android:background="@color/TEAL"
+            android:layout_marginTop="@dimen/startgame_activity_bordermul_margintop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <ImageView
+            android:id="@+id/ic_logosub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/startgame_activity_logosub_marginleft"
+            android:src="@drawable/subtraction_btn"
+            android:layout_below="@+id/ic_logoadd"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/startgame_activity_logosub_margintop"
+            />
+
+        <Button
+            android:id="@+id/btn_subtraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_bordersubbtn"
+            android:layout_toRightOf="@id/ic_logosub"
+            android:background="@color/WHITE"
+            android:text="@string/STARTGAME_BTN_SUB"
+            android:textAllCaps="false"
+            android:textColor="@color/BLACK"
+            android:textSize="@dimen/startgame_activity_btntxt_size"
+            style="?android:borderlessButtonStyle"
+            android:layout_marginLeft="@dimen/startgame_activity_btnsub_marginleft"
+
+            />
+        <Button
+            android:id="@+id/btn_multiplication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_bordermulbtn"
+            android:text="@string/STARTGAME_BTN_MUL"
+            android:background="@color/WHITE"
+            android:textColor="@color/BLACK"
+            android:textSize="@dimen/startgame_activity_btntxt_size"
+            android:textAllCaps="false"
+            style="?android:borderlessButtonStyle"
+            android:gravity="center"
+            />
+
+        <ImageView
+            android:id="@+id/iv_borderendbtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/startgame_activity_borderend_margintop"
+            android:background="@color/TEAL">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/ic_logomul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/multiplication_btn"
+            android:layout_below="@+id/ic_logosub"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/startgame_activity_logomul_marginright"
+            android:layout_marginTop="@dimen/startgame_activity_logomul_margintop" />
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

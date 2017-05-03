@@ -151,6 +151,7 @@
         android:background="@color/WHITE"
         android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainY"
         style="?android:borderlessButtonStyle"
+        android:layout_marginTop="@dimen/gameover_activity_margintop_tryagain"
         />
     <Button
         android:id="@+id/btn_tryagain_n"
@@ -166,6 +167,7 @@
         android:paddingLeft="@dimen/gameover_activity_paddingleft_tryagainN"
         android:layout_marginLeft="@dimen/gameover_activity_marginleft_tryagainN"
         style="?android:borderlessButtonStyle"
+        android:layout_marginTop="@dimen/gameover_activity_margintop_tryagain"
         />
 
 </RelativeLayout>

@@ -111,6 +111,10 @@ public class Addition extends AppCompatActivity implements View.OnClickListener 
         btn_thirdNum = (Button) findViewById(R.id.btn_ThirdNum);
         btn_thirdNum.setOnClickListener(this);
 
+        btn_firstNum.setTypeface(font);
+        btn_secondNum.setTypeface(font);
+        btn_thirdNum.setTypeface(font);
+
         SharedPreferences getScore = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         score = getScore.getInt(TAG_KEY, 0);
         Log.d(DEBUG_MESSAGE, "score is: " + score);

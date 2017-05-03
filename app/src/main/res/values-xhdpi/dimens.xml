@@ -8,13 +8,13 @@
     <dimen name="main_activity_headermargin_bottom">30dp</dimen>
     <dimen name="main_activity_header_LINE_width">175dp</dimen>
     <dimen name="main_activity_header_LINE_height">5dp</dimen>
-    <dimen name="main_activity_headermarginIC_bottom">185dp</dimen>
+    <dimen name="main_activity_headermarginIC_bottom">200dp</dimen>
     <dimen name="main_activity_headermarginIC_right">10dp</dimen>
 
     <dimen name="main_activity_btnbackground_height">35dp</dimen>
     <dimen name="main_activity_btntxt_size">20sp</dimen>
     <dimen name="main_activity_btnmargin_right">15dp</dimen>
-    <dimen name="main_activity_btnmargin_left">15dp</dimen>
+    <dimen name="main_activity_btnmargin_left">40dp</dimen>
     <dimen name="main_activity_btnmargin_top">20dp</dimen>
 
     <dimen name="startgame_activity_headermargin_bottom">15dp</dimen>
@@ -32,6 +32,7 @@
     <dimen name="startgame_activity_logosub_margintop">14dp</dimen>
     <dimen name="startgame_activity_btnsub_width">170dp</dimen>
     <dimen name="startgame_activity_btnmul_width">200dp</dimen>
+    <dimen name="startgame_activity_btnsub_marginleft">10dp</dimen>
     <dimen name="startgame_activity_btnmul_marginleft">10dp</dimen>
     <dimen name="startgame_activity_borderend_margintop">300dp</dimen>
     <dimen name="startgame_activity_logomul_marginright">20dp</dimen>
@@ -74,7 +75,8 @@
     <dimen name="gameover_activity_txtsize_playagain">30sp</dimen>
     <dimen name="gameover_activity_margintop_playagain">5dp</dimen>
     <dimen name="gameover_activity_txtsize_tryagain">20sp</dimen>
-    <dimen name="gameover_activity_marginleft_tryagainY">30dp</dimen>
+    <dimen name="gameover_activity_margintop_tryagain">15dp</dimen>
+    <dimen name="gameover_activity_marginleft_tryagainY">50dp</dimen>
     <dimen name="gameover_activity_paddingleft_tryagainN">15dp</dimen>
     <dimen name="gameover_activity_marginleft_tryagainN">70dp</dimen>
 

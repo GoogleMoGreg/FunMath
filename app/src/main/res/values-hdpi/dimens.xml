@@ -74,7 +74,7 @@
     <dimen name="gameover_activity_txtsize_playagain">30sp</dimen>
     <dimen name="gameover_activity_margintop_playagain">5dp</dimen>
     <dimen name="gameover_activity_txtsize_tryagain">20sp</dimen>
-    <dimen name="gameover_activity_marginleft_tryagainY">30dp</dimen>
+    <dimen name="gameover_activity_marginleft_tryagainY">50dp</dimen>
     <dimen name="gameover_activity_paddingleft_tryagainN">15dp</dimen>
     <dimen name="gameover_activity_marginleft_tryagainN">70dp</dimen>
 

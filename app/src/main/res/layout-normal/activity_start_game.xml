@@ -126,6 +126,7 @@
             android:textAllCaps="false"
             android:textColor="@color/BLACK"
             android:textSize="@dimen/startgame_activity_btntxt_size"
+            android:layout_marginLeft="@dimen/startgame_activity_btnsub_marginleft"
             style="?android:borderlessButtonStyle"
             />
         <Button

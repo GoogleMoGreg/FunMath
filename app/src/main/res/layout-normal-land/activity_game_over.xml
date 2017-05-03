@@ -138,12 +138,11 @@
         android:text="@string/GAMEOVER_PLAYAGAIN"
         android:textSize="@dimen/gameover_activity_txtsize_playagain"
         android:textColor="@color/BLACK"
-        android:layout_alignBaseline="@+id/tv_gamecategory"
-        android:layout_alignBottom="@+id/tv_gamecategory"
+        android:layout_marginRight="@dimen/gameover_activity_marginright_playagain"
+        android:layout_marginEnd="@dimen/gameover_activity_marginend_playagain"
+        android:layout_above="@+id/btn_tryagain_y"
         android:layout_toLeftOf="@+id/rLayout_gameover"
-        android:layout_toStartOf="@+id/rLayout_gameover"
-        android:layout_marginLeft="@dimen/gameover_activity_margintop_playagain"
-        />
+        android:layout_toStartOf="@+id/rLayout_gameover" />
     <Button
         android:id="@+id/btn_tryagain_y"
         android:layout_width="wrap_content"

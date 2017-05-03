@@ -41,15 +41,13 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/lLayout_headerHighscore"
-        >
     <RelativeLayout
         android:id="@+id/rLayout_highscores"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/lLayout_headerHighscore"
+        android:layout_toEndOf="@+id/lLayout_headerHighscore">
 
         <ImageView
             android:id="@+id/iv_borderHSadd"
@@ -140,7 +138,8 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:background="@color/TEAL"
-            android:layout_below="@+id/tv_HSmultiplication"
+           android:layout_below="@id/iv_borderHSmul"
+            android:layout_marginTop="@dimen/bestscore_activity_margintop_ivborderend"
             />
         <Button
             android:id="@+id/imgbtn_mulHS"
@@ -155,8 +154,10 @@
             android:paddingBottom="@dimen/bestscore_activity_paddingbottom_imgbtnhs"
             android:textSize="@dimen/bestscore_activity_txtsize_imgbtnhs"
             />
+
+
     </RelativeLayout>
-    </ScrollView>
+
 
 
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.androidprojects.greggy.funmath.DeveloperName">
+
+    <TextView
+        android:id="@+id/tv_developedby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DEVELOPED_BY"
+        android:textSize="@dimen/activity_developedby_textsize"
+        android:layout_marginTop="@dimen/activity_developedby_margintop"
+        android:layout_marginLeft="@dimen/activity_developedby_marginleft"
+      />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DEVELOPER_NAME"
+        android:textSize="@dimen/activity_developename_textsize"
+        android:layout_marginTop="@dimen/activity_developename_margintop"
+        android:layout_marginLeft="@dimen/activity_developename_marginleft"
+       />
+    <Button
+        android:id="@+id/btn_developok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/activity_btndevelop_txtsize"
+        android:text="@string/DEVELOPER_OK"
+        android:layout_marginTop="@dimen/activity_btndevelop_margintop"
+        />
+
+</LinearLayout>

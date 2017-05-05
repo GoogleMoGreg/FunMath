@@ -6,6 +6,15 @@
     <dimen name="global_activity_marginleft">100dp</dimen>
     <dimen name="global_activity_marginbottom">250dp</dimen>
 
+    <dimen name="activity_developedby_textsize">24sp</dimen>
+    <dimen name="activity_developedby_margintop">10dp</dimen>
+    <dimen name="activity_developedby_marginleft">10dp</dimen>
+    <dimen name="activity_developename_textsize">18sp</dimen>
+    <dimen name="activity_developename_margintop">10dp</dimen>
+    <dimen name="activity_developename_marginleft">10dp</dimen>
+    <dimen name="activity_btndevelop_txtsize">15sp</dimen>
+    <dimen name="activity_btndevelop_margintop">10dp</dimen>
+
     <dimen name="main_activity_headertxtsize_FUN">100sp</dimen>
     <dimen name="main_activity_headermargin_top">10dp</dimen>
     <dimen name="main_activity_headermargin_bottom">30dp</dimen>

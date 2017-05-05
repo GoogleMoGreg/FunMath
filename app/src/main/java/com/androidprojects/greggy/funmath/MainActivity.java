@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     String DEBUG_MESSAGE = "MESSAGE";
     Button btn_startgame, btn_highscore, btn_about;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_about = (Button) findViewById(R.id.btn_about);
         btn_about.setOnClickListener(this);
         tv_FUN=(TextView)findViewById(R.id.tv_MainHeader_FUN);
+        tv_FUN.setOnClickListener(this);
         tv_MATH=(TextView)findViewById(R.id.tv_MainHeader_MATH);
         font = Typeface.createFromAsset(getAssets(), "fonts/URW Gothic L Book.ttf");
         tv_FUN.setTypeface(font);
@@ -70,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent Tutorial = new Intent(getApplicationContext(), com.androidprojects.greggy.funmath.Tutorial.class);
                 startActivity(Tutorial);
                 break;
+            case R.id.tv_MainHeader_FUN:
+                Log.d(DEBUG_MESSAGE,"clicked FUN");
+                ShowDevelopedBy();
+                break;
         }
     }
 
@@ -82,7 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dbHelper.InsertData(categoryList[i],String.valueOf(0));
             }
             Log.d(DEBUG_MESSAGE,"Successfully Inserted new DB");
-
         }
+    }
+    private void ShowDevelopedBy(){
+        Intent showDevelopBy = new Intent(this,DeveloperName.class);
+        startActivity(showDevelopBy);
     }
 }

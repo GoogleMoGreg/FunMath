@@ -21,7 +21,8 @@
         <activity android:name=".GameOver" />
         <activity android:name=".Multiplication" />
         <activity android:name=".Highscore" />
-        <activity android:name=".Tutorial"></activity>
+        <activity android:name=".Tutorial" />
+        <activity android:name=".DeveloperName"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Fun Over Math</string>
 
+    <string name="DEVELOPED_BY">Developed By:</string>
+    <string name="DEVELOPER_NAME">Engr. John Gregory Funtera</string>
+    <string name="DEVELOPER_OK">OK</string>
+
+
     <string name="HEADER_NAME_FUN">FUN</string>
     <string name="HEADER_NAME_MATH">MATH</string>
 
